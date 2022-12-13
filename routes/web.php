@@ -1,0 +1,184 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Auth::routes();
+
+
+Route::group(['middleware' => 'PreventBackHistory'], function () {
+});
+
+
+// User
+
+Route::group(['prefix' => 'Visitior', 'middleware' => ['isUser', 'auth', 'PreventBackHistory']], function () {
+
+    Route::get('/', [HomeController::class, 'thankYou'])->name('thankYou.user');
+    // Dashboard
+    Route::get('list', [UserController::class, 'VisitiorRegistration'])->name('user.list');
+
+    Route::get('popUpVisitiorRegistration', [UserController::class, 'popUpVisitiorRegistration']);
+
+    // Export All User Visitor Registration
+    Route::get('export-All-VisitorRegistration', [UserController::class, 'exportAllVisitorRegistration'])->name('exportAllVisitorRegistration');
+
+    // Date Filter Export User Visitor Registration datefilterdemo
+    Route::get('datefilterVisitor', [UserController::class, 'datefilterVisitor'])->name('datefilterVisitor');
+
+    // Profile
+
+    // Route::get('/', [UserController::class, 'profile']);
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('profile/profilesave', [UserController::class, 'profilesave'])->name('profilesave');
+
+    // Password Change
+
+    Route::get('password-change', [UserController::class, 'changePassword'])->name('change-password');
+    Route::post('password-change/store', [UserController::class, 'changePasswordSave'])->name('user.changePassword');
+
+
+});
+
+Route::group(['prefix' => 'Admin', 'middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
+    // Admin
+    Route::get('dash', [AdminController::class, 'adminHome'])->name('admin.home');
+
+    // Visitor Registration
+    Route::get('visitor-list', [AdminController::class, 'visitorRegistration'])->name('admin.visitor');
+    Route::get('visitor-demo', [AdminController::class, 'visitordemoRegistration'])->name('admin.demo');
+
+    // Export All Visitor Registration
+    Route::get('export-All-visitorRegistration', [AdminController::class, 'exportAllvisitorRegistration'])->name('exportAllvisitorRegistration');
+
+    //  Date Filter Export Visitor Registration datefilterdemo
+    Route::get('datefiltervisitor', [AdminController::class, 'datefiltervisitor'])->name('datefiltervisitor');
+
+    // PopUp
+    Route::get('popUpVisitorRegistration', [AdminController::class, 'popUpVisitorRegistration']);
+    // Route::get('popUpVisitorRegistration', [HomeController::class, 'popUpVisitorRegistration']);
+
+    // Admin Profile
+    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+
+    // Admin Profile Update
+    Route::post('profile/profilesave', [AdminController::class, 'adminProfilesave'])->name('admin.profilesave');
+
+    // Admin Password Change
+    Route::post('changePassword', [AdminController::class, 'changePasswordSave'])->name('changePassword');
+
+    // All User
+    Route::get('customers', [AdminController::class, 'user'])->name('user');
+
+    // Export All Customers
+    Route::get('all-customers', [AdminController::class, 'exportAllUsers'])->name('all-customers');
+
+});
+
+Route::group(['prefix' => 'Demo', 'middleware' => ['isDemo', 'auth', 'PreventBackHistory']], function () {
+
+    // Dashboard
+    Route::get('dash', [DemoController::class, 'demoHome'])->name('demo.home');
+    // Demo List
+    Route::get('demo-list', [DemoController::class, 'demoRegistration'])->name('demo.index');
+
+    Route::get('popUpDemoRegistration', [DemoController::class, 'popUpDemoRegistration']);
+
+    // Export All Clinic Visitor Registration
+    Route::get('export-All-DemoRegistration', [DemoController::class, 'exportAllDemoRegistration'])->name('exportAllDemoRegistration');
+
+    //  Date Filter Export Visitor Registration datefilterdemo
+     Route::get('datefilterdemo', [DemoController::class, 'datefilterdemo'])->name('datefilterdemo');
+
+    //  Demo Profile
+     Route::get('profile', [DemoController::class, 'profile'])->name('demo.profile');
+     Route::post('profile/profilesave', [DemoController::class, 'profilesave'])->name('demo.profilesave');
+
+     // Password Change
+
+     Route::get('password-change', [DemoController::class, 'changePassword'])->name('demo.change-password');
+     Route::post('password-change/store', [DemoController::class, 'changePasswordSave'])->name('demo.changePassword');
+
+});
+
+
+Route::post('api/fetch-states', [CountriesStatesCitiesController::class, 'fetchState']);
+
+Route::post('api/fetch-cities', [CountriesStatesCitiesController::class, 'fetchCity']);
+
+
+// Warranty And Replacement Policy
+
+Route::get('warranty-and-replacement-policy', [HomeController::class, 'warrantyAndReplacementPolicy'])->name('warrantyAndReplacementPolicy');
+
+// Thank You
+Route::get('Thank-you', [HomeController::class, 'thankYou'])->name('thankYou');
+
+
+Route::get('pagetest', [HomeController::class, 'pagetest'])->name('pagetest');
+
+// visitor
+
+Route::get('globalsyncvisitor', [HomeController::class, 'visitor'])->name('visitor');
+Route::post('Visitor/store', [HomeController::class, 'visitorSave'])->name('visitor.store');
+Route::get('globalsyncvisitor/submit', [HomeController::class, 'submitForm'])->name('submit');
+
+// Route::get('popUpVisitorRegistration', [HomeController::class, 'popUpVisitorRegistration']);
+
+
+// User visitor
+
+Route::get('resgvisitor', [HomeController::class, 'uservisitor'])->name('user.visitor');
+Route::post('clinicvisitor/store', [HomeController::class, 'clinicvisitorSave'])->name('user.visitorstore');
+Route::get('clinic/submit', [HomeController::class, 'clinicSubmitForm'])->name('visitor.sumbit');
+
+// Demo visitor
+
+Route::get('demovisitor', [HomeController::class, 'demovisitor'])->name('demo');
+Route::post('demovisitor/store', [HomeController::class, 'demovisitorSave'])->name('demo.store');
+Route::get('demo/submit', [HomeController::class, 'demoSubmitForm'])->name('demo.sumbit');
+
+
+
+// Dashboard Report Visitor
+
+Route::get('/get-visitor-chart-data', [HomeController::class, 'getMonthlyVisitorRegistrationData']);
+
+Route::get('/Optimize', function () {
+    // Config Cache & Clear
+    $clearconfig = Artisan::call('config:cache');
+    $clearconfig = Artisan::call('config:clear');
+    // Cache Clear
+    $clearcache = Artisan::call('cache:clear');
+    // Route Cache & Clear
+    $clearconfig = Artisan::call('route:clear');
+    $clearconfig = Artisan::call('route:cache');
+    // View Clear
+    $clearview = Artisan::call('view:clear');
+
+    echo "Optimize ...!<br>";
+    // return redirect()->back()->with("success", "Optimize ...!");
+
+});
