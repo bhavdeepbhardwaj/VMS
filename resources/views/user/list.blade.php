@@ -74,7 +74,7 @@
                                             <tr>
                                                 <td class="">
                                                     @if ($cr->pic != null)
-                                                        <img src="{{ '../Clinic/' . $cr->pic }}" class="rounded-circle"
+                                                        <img src="{{ '../Visitor/' . $cr->pic }}" class="rounded-circle"
                                                             width="50" height="50" alt="Global"><br />
                                                     @else
                                                         N/A
@@ -123,7 +123,7 @@
 
                         <div class="row">
                             <div class=" text-center">
-                                <a href="/" title="ORAL SQUARE">
+                                <a href="/" title="{{ Auth::user()->company_name }}">
                                     @if (Auth::user()->company_logo != '')
                                         @foreach (explode(',', Auth::user()->company_logo) as $ref)
                                             <img class="pt-5 w-25" src="{{ Auth::user()->company_logo }}"
@@ -145,13 +145,13 @@
                                                     <div class="imagePreview ec-div-preview">
                                                         @if ($guest != null)
                                                             <img class="ec-image-preview" id="pic" src="../Clinic/"
-                                                                alt="ORAL SQUARE"
+                                                                alt="{{ Auth::user()->company_name }}"
                                                                 style="width: 100%; padding-bottom: 20px;">
                                                             <br />
                                                         @else
                                                             <img class="ec-image-preview"
                                                                 src="{{ asset('assets/img/user/user.png') }}"
-                                                                alt="ORAL SQUARE" style="width: 50%; padding-bottom: 20px;">
+                                                                alt="{{ Auth::user()->company_name }}" style="width: 50%; padding-bottom: 20px;">
                                                         @endif
                                                     </div>
                                                 </div>
@@ -262,27 +262,12 @@
         }
     </script>
     <script>
-        function ExportToExcel(type, fn, dl) {
-            var elt = document.getElementById('responsive-data-table');
-            var wb = XLSX.utils.table_to_book(elt, {
-                sheet: "sheet1"
-            });
-            return dl ?
-                XLSX.write(wb, {
-                    bookType: type,
-                    bookSST: true,
-                    type: 'base64'
-                }) :
-                XLSX.writeFile(wb, fn || ('Visitor-Registration.' + (type || 'xlsx')));
-        }
-    </script>
-    <script>
         function popupfunctioncall(visitorID) {
             $.ajax({
                 type: "GET",
                 dataType: 'json',
                 // data:{('visitorID' => visitorID)},
-                url: '/Clinic/popUpClinicRegistration/',
+                url: '/Visitor/popUpVisitiorRegistration/',
                 data: {
                     'visitorID': visitorID
                 },

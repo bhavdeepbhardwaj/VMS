@@ -57,12 +57,12 @@
                     <hr>
                 </li>
 
-                {{--  <li class="">
-                    <a class="sidenav-item-link" href="{{ route('profile') }}">
+                 <li class="">
+                    <a class="sidenav-item-link" href="{{ route('user.qrcode') }}">
                         <i class="mdi mdi-account"></i>
-                        <span class="nav-text">My Profile</span>
+                        <span class="nav-text">QR Code</span>
                     </a>
-                </li>  --}}
+                </li>
 
 
                 {{-- <li>

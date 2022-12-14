@@ -34,9 +34,9 @@ Route::group(['middleware' => 'PreventBackHistory'], function () {
 
 // User
 
-Route::group(['prefix' => 'Visitior', 'middleware' => ['isUser', 'auth', 'PreventBackHistory']], function () {
+Route::group(['prefix' => 'Visitor', 'middleware' => ['isUser', 'auth', 'PreventBackHistory']], function () {
 
-    Route::get('/', [HomeController::class, 'thankYou'])->name('thankYou.user');
+    Route::get('Thank-you', [UserController::class, 'thankYou'])->name('thankYou.user');
     // Dashboard
     Route::get('list', [UserController::class, 'VisitiorRegistration'])->name('user.list');
 
@@ -48,6 +48,9 @@ Route::group(['prefix' => 'Visitior', 'middleware' => ['isUser', 'auth', 'Preven
     // Date Filter Export User Visitor Registration datefilterdemo
     Route::get('datefilterVisitor', [UserController::class, 'datefilterVisitor'])->name('datefilterVisitor');
 
+    // QR Code
+    Route::get('qr-code', [UserController::class, 'QRCode'])->name('user.qrcode');
+
     // Profile
 
     // Route::get('/', [UserController::class, 'profile']);
@@ -58,8 +61,6 @@ Route::group(['prefix' => 'Visitior', 'middleware' => ['isUser', 'auth', 'Preven
 
     Route::get('password-change', [UserController::class, 'changePassword'])->name('change-password');
     Route::post('password-change/store', [UserController::class, 'changePasswordSave'])->name('user.changePassword');
-
-
 });
 
 Route::group(['prefix' => 'Admin', 'middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
@@ -94,7 +95,6 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['isAdmin', 'auth', 'PreventB
 
     // Export All Customers
     Route::get('all-customers', [AdminController::class, 'exportAllUsers'])->name('all-customers');
-
 });
 
 Route::group(['prefix' => 'Demo', 'middleware' => ['isDemo', 'auth', 'PreventBackHistory']], function () {
@@ -110,17 +110,16 @@ Route::group(['prefix' => 'Demo', 'middleware' => ['isDemo', 'auth', 'PreventBac
     Route::get('export-All-DemoRegistration', [DemoController::class, 'exportAllDemoRegistration'])->name('exportAllDemoRegistration');
 
     //  Date Filter Export Visitor Registration datefilterdemo
-     Route::get('datefilterdemo', [DemoController::class, 'datefilterdemo'])->name('datefilterdemo');
+    Route::get('datefilterdemo', [DemoController::class, 'datefilterdemo'])->name('datefilterdemo');
 
     //  Demo Profile
-     Route::get('profile', [DemoController::class, 'profile'])->name('demo.profile');
-     Route::post('profile/profilesave', [DemoController::class, 'profilesave'])->name('demo.profilesave');
+    Route::get('profile', [DemoController::class, 'profile'])->name('demo.profile');
+    Route::post('profile/profilesave', [DemoController::class, 'profilesave'])->name('demo.profilesave');
 
-     // Password Change
+    // Password Change
 
-     Route::get('password-change', [DemoController::class, 'changePassword'])->name('demo.change-password');
-     Route::post('password-change/store', [DemoController::class, 'changePasswordSave'])->name('demo.changePassword');
-
+    Route::get('password-change', [DemoController::class, 'changePassword'])->name('demo.change-password');
+    Route::post('password-change/store', [DemoController::class, 'changePasswordSave'])->name('demo.changePassword');
 });
 
 
@@ -129,9 +128,9 @@ Route::post('api/fetch-states', [CountriesStatesCitiesController::class, 'fetchS
 Route::post('api/fetch-cities', [CountriesStatesCitiesController::class, 'fetchCity']);
 
 
-// Warranty And Replacement Policy
+// Privacy Policy
 
-Route::get('warranty-and-replacement-policy', [HomeController::class, 'warrantyAndReplacementPolicy'])->name('warrantyAndReplacementPolicy');
+Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacyPolicy');
 
 // Thank You
 Route::get('Thank-you', [HomeController::class, 'thankYou'])->name('thankYou');
@@ -151,8 +150,8 @@ Route::get('globalsyncvisitor/submit', [HomeController::class, 'submitForm'])->n
 // User visitor
 
 Route::get('resgvisitor', [HomeController::class, 'uservisitor'])->name('user.visitor');
-Route::post('clinicvisitor/store', [HomeController::class, 'clinicvisitorSave'])->name('user.visitorstore');
-Route::get('clinic/submit', [HomeController::class, 'clinicSubmitForm'])->name('visitor.sumbit');
+Route::post('uservisitor/store', [HomeController::class, 'UvisitorSave'])->name('user.visitorstore');
+Route::get('user/submit', [HomeController::class, 'UvisitorSubmit'])->name('user.sumbit');
 
 // Demo visitor
 

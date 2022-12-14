@@ -19,11 +19,11 @@ class HomeController extends Controller
     //     $this->middleware('auth');
     // }
 
-    // Warranty And Replacement Policy
+    // Privacy Policy
 
-    public function warrantyAndReplacementPolicy()
+    public function privacyPolicy()
     {
-        return view('pages.warranty-and-replacement-policy');
+        return view('pages.privacy-policy');
     }
 
     // Demo Registration
@@ -133,13 +133,13 @@ class HomeController extends Controller
             if (isset($getdata) && $getdata) {
                 $incid = $getdata->id + 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = "ORALSQUARE ID-" . $num_padded;
+                $visitorID = "GLOBALSYNC ID-" . $num_padded;
                 // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = "ORALSQUARE ID-" . $num_padded;
+                $visitorID = "GLOBALSYNC ID-" . $num_padded;
                 // dd($visitorID);
             }
         } catch (ModelNotFoundException $exception) {
@@ -150,7 +150,7 @@ class HomeController extends Controller
 
     // Visitor Registration Save
 
-    public function VisitorvisitorSave(Request $request)
+    public function UvisitorSave(Request $request)
     {
         // dd($request->all());
         try {
@@ -199,7 +199,7 @@ class HomeController extends Controller
             if ($result) {
                 // return redirect()->back()->with("success", "Product Complaint Registered...!");
                 // return redirect()->back()->with("success", "Registered...!");
-                return redirect()->route('visitor.sumbit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
+                return redirect()->route('user.sumbit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
                 // return redirect('globalsyncvisitor/submit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
             }
         } catch (ModelNotFoundException $exception) {
@@ -209,7 +209,7 @@ class HomeController extends Controller
 
     // Visitor Sumbit Responce
 
-    public function VisitorSubmitForm(Request $request)
+    public function UvisitorSubmit(Request $request)
     {
         try {
             // $getdata = Visitor::where('phone', $request->phone)->get();
@@ -218,7 +218,7 @@ class HomeController extends Controller
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('pages.VisitorSubmit', ['getdata' => $getdata]);
+        return view('pages.Usubmit', ['getdata' => $getdata]);
     }
 
     // Visitor Registration

@@ -195,4 +195,17 @@ class UserController extends Controller
         }
         return redirect()->back()->with("error", "Something is wrong !");
     }
+
+    // QR Code Generate
+
+    public function QRCode()
+    {
+        $guest = Visitor::orderBy('created_at', 'DESC')->get();
+        return view('user.qrcode', ['guest' => $guest]);
+    }
+
+    public function thankYou()
+    {
+        return view('pages.thankYou');
+    }
 }

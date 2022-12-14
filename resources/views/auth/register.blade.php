@@ -21,8 +21,8 @@
 
                     <div class="card-body">
                         @include('component.alert')
-                        <h4 class="text-dark mb-5">Join Now</h4>
-                        <div class="text-dark mb-5">Welcome, GLOBALSYNC Member!</div>
+                        <h4 class="text-dark mb-5">SIGN UP</h4>
+                        <div class="text-dark mb-5">Welcome, TO GLOBALSYNC </div>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -62,7 +62,7 @@
 
                                 <div class="form-group col-md-6 mb-4">
                                     <input type="tel" class="form-select1 @error('company_phone') is-invalid @enderror"
-                                        id="company_phone" name="company_phone" placeholder="Company Number" value="{{ old('company_phone') }}"
+                                        id="company_phone" name="company_phone" placeholder="Phone Number" value="{{ old('company_phone') }}"
                                         autocomplete="company_phone">
                                     @error('company_phone')
                                         <span class="invalid-feedback" role="alert">
@@ -102,8 +102,8 @@
 
                                 <div class="col-md-12">
                                     <div class="d-inline-block ">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }} />&nbsp;&nbsp;Privacy Policy.
+                                        <input class="form-check-input" type="checkbox" name="remember" required id="remember"
+                                            {{ old('remember') ? 'checked' : '' }} />&nbsp;&nbsp; I accept the <a href="{{ route('privacyPolicy') }}" target="_blank">Privacy Policy</a>
                                     </div>
 
 

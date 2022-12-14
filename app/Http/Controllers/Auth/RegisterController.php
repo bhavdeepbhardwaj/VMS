@@ -95,7 +95,9 @@ class RegisterController extends Controller
 
         $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        return redirect()->back()->with("status", "Your request has been sent successfully to team will be a connect you Thank You");
+        $mailer->sendVisitorRegistrationInformationLeads($get);
+
+        return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
     }
 
     public function showRegistrationForm()

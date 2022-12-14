@@ -42,7 +42,7 @@
         #results { padding:20px; border:1px solid; background:#ccc; }
     </style> --}}
 
-    <title>Oral Square</title>
+    <title>GLOBALSYNC</title>
 </head>
 
 <body>
@@ -51,8 +51,8 @@
             <div class="container">
 
                 <div class=" text-center ">
-                    <a href="/" title="Oral Square">
-                        <img class="w-25 pt-40 pb-40" src="{{ asset('assets/img/logo/clinic/logo.png') }}" alt="Oral Square" />
+                    <a href="/" title="GLOBALSYNC">
+                        <img class="w-25 pt-40 pb-40" src="{{ asset('assets/img/logo/logo.png') }}" alt="GLOBALSYNC" />
                     </a>
                 </div>
                 <!-- CONTENT WRAPPER -->
@@ -61,7 +61,7 @@
                         <div class="col-md-12 col-12 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Clinic Registration</h4>
+                                    <h4>Visitior Registration</h4>
                                     <hr>
                                     <small>Items marked with an asterisk (*) must be filled out.</small><br>
                                 </div>
@@ -179,9 +179,10 @@
                                                                 name="purpose">
                                                                 {{-- @if (!$user->gender) --}}
                                                                 <option value="">Select Purpose</option>
-                                                                <option value="Check-up">Check-up</option>
-                                                                <option value="Treatment">Treatment</option>
-                                                                <option value="follow up visit">Follow up visit</option>
+                                                                <option value="Meeting">Meeting</option>
+                                                                <option value="Interview">Interview</option>
+                                                                <option value="Employee">Employee</option>
+                                                                <option value="Visitor">Visitor</option>
                                                                 <option value="Other">Other</option>
                                                                 @error('purpose')
                                                                     <span class="invalid-feedback form-text"

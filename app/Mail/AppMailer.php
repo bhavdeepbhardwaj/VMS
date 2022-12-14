@@ -22,10 +22,11 @@ class AppMailer
     public $mailer;
     public $fromAddress = 'sales@globalsync.com.au';
     // public $fromAddress = 'noreply@gee.com.au';
-    public $fromName = 'GLOBALSYNC TEAM';
+    public $fromName = 'GLOBALSYNC';
     public $to;
     public $subject;
     public $view;
+    public $bcc = 'bcc mail';
     public $data = [];
 
     public function __construct(Mailer $mailer)
@@ -38,15 +39,35 @@ class AppMailer
 
     public function sendVisitorRegistrationInformation($user, User $users)
     {
-        $this->to =  $users->email;
+
+        $this->to = $users->email;
         $this->subject = "VMS Signup Confirmation: Globalsync";
         $this->view = 'emails.visitorSinup';
         $this->data = compact('user', 'users');
         return $this->deliver();
     }
 
+    // Visitor User Registration Information
+
+    public function sendVisitorRegistrationInformationLeads(User $users)
+    {
+
+        $this->to = ['apandey@globalsync.com.au'];
+        // $this->to = ['bhavdeepb.gee@gmail.com'];
+        $this->subject = "VMS New LEAD";
+        $this->view = 'emails.leads';
+        $this->data = compact('users', 'users');
+        return $this->deliver();
+    }
+
     public function deliver()
     {
+        // BCC ADD
+        // $this->mailer->send($this->view, $this->data, function ($message) {
+        //     $message->from($this->fromAddress, $this->fromName)
+        //         ->to($this->to)->bcc($this->bcc)->subject($this->subject);
+        // });
+
         $this->mailer->send($this->view, $this->data, function ($message) {
             $message->from($this->fromAddress, $this->fromName)
                 ->to($this->to)->subject($this->subject);

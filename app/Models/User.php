@@ -30,7 +30,8 @@ class User extends Authenticatable
         'password',
         'company_logo',
         'role',
-        'approve'
+        'approve',
+        'qrCode'
     ];
 
     /**
