@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Mail\AppMailer;
-use App\Models\Guest;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Storage;
-use Svg\Tag\Rect;
-use App\Models\Visitor;
 use App\Models\Demo;
+use App\Models\Guest;
+use App\Models\Visitor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
@@ -61,18 +59,18 @@ class HomeController extends Controller
             // $picture = "";
             // $imageNameArr = [];
             $this->validate($request, [
-                'name'                 => 'required',
+                'name' => 'required',
                 // 'email'                => 'required',
                 // 'phone'                => 'required|regex:/^(?:\d{11})$/i',
-                'phone'                => 'required||min:10|max:11',
+                'phone' => 'required||min:10|max:11',
                 // 'host'                 => 'required',
-                'address'                 => 'required',
-                'purpose'              => 'required',
-                'visitorID'            => 'required',
-                'pic'                  => 'required',
+                'address' => 'required',
+                'purpose' => 'required',
+                'visitorID' => 'required',
+                'pic' => 'required',
             ]);
 
-            if ($request->pic == NULL) {
+            if ($request->pic == null) {
                 return redirect()->back()->with("error", "The Image field is required...!!!");
             }
             $img = $request->pic;
@@ -89,14 +87,14 @@ class HomeController extends Controller
             file_put_contents('Demo/' . $fileName, $image_base64);
 
             $complRegis = new Demo();
-            $complRegis->name               = $request->name;
-            $complRegis->email              = $request->email;
-            $complRegis->phone              = $request->phone;
-            $complRegis->host               = $request->host;
-            $complRegis->purpose            = $request->purpose;
-            $complRegis->address            = $request->address;
-            $complRegis->pic                = $fileName;
-            $complRegis->visitorID          = $request->visitorID;
+            $complRegis->name = $request->name;
+            $complRegis->email = $request->email;
+            $complRegis->phone = $request->phone;
+            $complRegis->host = $request->host;
+            $complRegis->purpose = $request->purpose;
+            $complRegis->address = $request->address;
+            $complRegis->pic = $fileName;
+            $complRegis->visitorID = $request->visitorID;
 
             $result = $complRegis->save();
 
@@ -124,28 +122,45 @@ class HomeController extends Controller
 
     // User Registration
 
-    public function uservisitor()
+    public function uservisitor($data)
     {
-        try {
-            $getdata = \App\Models\Visitor::latest()->first();
-            // dd($checkdata);
+        // dd($data);
+        $checkCompany = \App\Models\User::where('company_name', $data)->get();
 
-            if (isset($getdata) && $getdata) {
-                $incid = $getdata->id + 1;
+        $companyArr = \App\Models\Purpose::where('companyName',$data)->pluck('name')->first();
+        $explodecompany = explode(',',$companyArr);
+        // dd($explodecompany);
+        // dd($companyArr);
+        // dd(count($checkCompany));
+
+        try {
+            $getdata = \App\Models\Visitor::where('companyCode', $data)->count();
+
+            // if (isset($getdata) && $getdata) {
+                if ($getdata > 0) {
+                $incid = $getdata + 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = "GLOBALSYNC ID-" . $num_padded;
+                $visitorID = $data."ID-" . $num_padded;
                 // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = "GLOBALSYNC ID-" . $num_padded;
+                $visitorID = $data."ID-" . $num_padded;
                 // dd($visitorID);
             }
+
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('pages.Uvisitor', ['visitorID' => $visitorID]);
+
+        if (count($checkCompany) > 0) {
+
+            return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany]);
+        } else {
+            return back()->withError($exception->getMessage())->withInput();
+
+        }
     }
 
     // Visitor Registration Save
@@ -154,21 +169,19 @@ class HomeController extends Controller
     {
         // dd($request->all());
         try {
-            // $picture = "";
-            // $imageNameArr = [];
             $this->validate($request, [
-                'name'                 => 'required',
+                'name' => 'required',
                 // 'email'                => 'required',
                 // 'phone'                => 'required|regex:/^(?:\d{11})$/i',
-                'phone'                => 'required||min:10|max:11',
+                'phone' => 'required||min:10|max:11',
                 // 'host'                 => 'required',
-                'address'                 => 'required',
-                'purpose'              => 'required',
-                'visitorID'            => 'required',
-                'pic'                  => 'required',
+                'address' => 'required',
+                'purpose' => 'required',
+                'visitorID' => 'required',
+                'pic' => 'required',
             ]);
 
-            if ($request->pic == NULL) {
+            if ($request->pic == null) {
                 return redirect()->back()->with("error", "The Image field is required...!!!");
             }
             $img = $request->pic;
@@ -185,22 +198,20 @@ class HomeController extends Controller
             file_put_contents('Visitor/' . $fileName, $image_base64);
 
             $complRegis = new Visitor();
-            $complRegis->name               = $request->name;
-            $complRegis->email              = $request->email;
-            $complRegis->phone              = $request->phone;
-            $complRegis->host               = $request->host;
-            $complRegis->purpose            = $request->purpose;
-            $complRegis->address            = $request->address;
-            $complRegis->pic                = $fileName;
-            $complRegis->visitorID          = $request->visitorID;
+            $complRegis->name = $request->name;
+            $complRegis->email = $request->email;
+            $complRegis->phone = $request->phone;
+            $complRegis->host = $request->host;
+            $complRegis->purpose = $request->purpose;
+            $complRegis->address = $request->address;
+            $complRegis->pic = $fileName;
+            $complRegis->visitorID = $request->visitorID;
+            $complRegis->companyCode = $request->companyCode;
 
             $result = $complRegis->save();
 
             if ($result) {
-                // return redirect()->back()->with("success", "Product Complaint Registered...!");
-                // return redirect()->back()->with("success", "Registered...!");
                 return redirect()->route('user.sumbit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
-                // return redirect('globalsyncvisitor/submit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong...!");
@@ -256,19 +267,19 @@ class HomeController extends Controller
             // $picture = "";
             // $imageNameArr = [];
             $this->validate($request, [
-                'name'                 => 'required',
+                'name' => 'required',
                 // 'email'                => 'required',
                 // 'phone'                => 'required|regex:/^(?:\d{11})$/i',
-                'phone'                => 'required||min:10|max:11',
+                'phone' => 'required||min:10|max:11',
                 // 'host'                 => 'required',
-                'address'                 => 'required',
-                'purpose'              => 'required',
-                'visitorID'            => 'required',
-                'pic'                  => 'required',
-                'signature'                  => 'required',
+                'address' => 'required',
+                'purpose' => 'required',
+                'visitorID' => 'required',
+                'pic' => 'required',
+                'signature' => 'required',
             ]);
 
-            if ($request->pic == NULL) {
+            if ($request->pic == null) {
                 return redirect()->back()->with("error", "The Image field is required...!!!");
             }
             $img = $request->pic;
@@ -297,17 +308,16 @@ class HomeController extends Controller
             $data = base64_decode($signature_img);
             file_put_contents('Visitor/Signature/' . $signature_fileName, $signature_image_base64);
 
-
             $complRegis = new Guest();
-            $complRegis->name               = $request->name;
-            $complRegis->email              = $request->email;
-            $complRegis->phone              = $request->phone;
-            $complRegis->host               = $request->host;
-            $complRegis->purpose            = $request->purpose;
-            $complRegis->address            = $request->address;
-            $complRegis->pic                = $fileName;
-            $complRegis->visitorID          = $request->visitorID;
-            $complRegis->signature          = $signature_fileName;
+            $complRegis->name = $request->name;
+            $complRegis->email = $request->email;
+            $complRegis->phone = $request->phone;
+            $complRegis->host = $request->host;
+            $complRegis->purpose = $request->purpose;
+            $complRegis->address = $request->address;
+            $complRegis->pic = $fileName;
+            $complRegis->visitorID = $request->visitorID;
+            $complRegis->signature = $signature_fileName;
 
             dd($complRegis);
 
@@ -348,7 +358,7 @@ class HomeController extends Controller
 
     // Dashboard Report
 
-    function getAllMonths()
+    public function getAllMonths()
     {
 
         $month_array = array();
@@ -366,13 +376,13 @@ class HomeController extends Controller
         return $month_array;
     }
 
-    function getMonthlyPostCount($month)
+    public function getMonthlyPostCount($month)
     {
         $monthly_visitor_count = Guest::whereMonth('created_at', $month)->get()->count();
         return $monthly_visitor_count;
     }
 
-    function getMonthlyVisitorRegistrationData()
+    public function getMonthlyVisitorRegistrationData()
     {
 
         $monthly_visitor_count_array = array();

@@ -93,9 +93,9 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        $mailer->sendVisitorRegistrationInformationLeads($get);
+        // $mailer->sendVisitorRegistrationInformationLeads($get);
 
         return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
     }

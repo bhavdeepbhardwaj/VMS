@@ -144,7 +144,7 @@ class UserController extends Controller
         try {
             // $getdata = Guest::where('visitorID', $request->visitorID)->get()->first();
             // dd($getdata);
-            $guest = Visitor::orderBy('created_at', 'DESC')->get();
+            $guest = Visitor::where('companyCode', Auth::user()->company_name)->orderBy('created_at', 'DESC')->get();
             // dd($guest);
 
         } catch (ModelNotFoundException $exception) {

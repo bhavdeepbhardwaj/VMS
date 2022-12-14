@@ -149,7 +149,7 @@ Route::get('globalsyncvisitor/submit', [HomeController::class, 'submitForm'])->n
 
 // User visitor
 
-Route::get('resgvisitor', [HomeController::class, 'uservisitor'])->name('user.visitor');
+Route::get('resgvisitor/{slg}', [HomeController::class, 'uservisitor'])->name('user.visitor');
 Route::post('uservisitor/store', [HomeController::class, 'UvisitorSave'])->name('user.visitorstore');
 Route::get('user/submit', [HomeController::class, 'UvisitorSubmit'])->name('user.sumbit');
 

@@ -87,6 +87,17 @@
                                                     {{-- Visitor ID --}}
                                                     <div class="col-md-12 col-lg-12" >
                                                         <div class="mb-3">
+                                                            <label for="companyCode" class="form-label">Company Code</label>
+                                                            <input type="text" class="form-control" id="companyCode"
+                                                                aria-describedby="companyCodeHelp" name="companyCode"
+                                                                value="{{ $data }}" readonly>
+                                                        </div>
+                                                    </div>
+
+
+                                                    {{-- Visitor ID --}}
+                                                    <div class="col-md-12 col-lg-12" >
+                                                        <div class="mb-3">
                                                             <label for="visitorID" class="form-label">Visitor ID</label>
                                                             <input type="text" class="form-control" id="visitorID"
                                                                 aria-describedby="visitorIDHelp" name="visitorID"
@@ -179,11 +190,14 @@
                                                                 name="purpose">
                                                                 {{-- @if (!$user->gender) --}}
                                                                 <option value="">Select Purpose</option>
-                                                                <option value="Meeting">Meeting</option>
+                                                                @foreach($explodecompany as $key => $value)
+                                                                <option value="{{$value}}">{{$value}}</option>
+                                                                @endforeach
+                                                                {{--<option value="Meeting">Meeting</option>
                                                                 <option value="Interview">Interview</option>
                                                                 <option value="Employee">Employee</option>
                                                                 <option value="Visitor">Visitor</option>
-                                                                <option value="Other">Other</option>
+                                                                <option value="Other">Other</option>--}}
                                                                 @error('purpose')
                                                                     <span class="invalid-feedback form-text"
                                                                         id="purposeHelp" role="alert">

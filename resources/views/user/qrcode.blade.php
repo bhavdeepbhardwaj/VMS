@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="row" >
                                 <div class=" col-md-6 col-lg-6 text-center">
-                                    <img src="../{{ Auth::user()->qrCode }}" class="w-50" />
+                                    <img src="../{{ Auth::user()->company_logo }}" class="w-50" />
                                 </div>
                                 <div class=" col-md-6 col-lg-6 ">
                                     <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75"/>
