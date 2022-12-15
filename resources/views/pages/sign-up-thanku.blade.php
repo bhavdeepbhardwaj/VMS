@@ -19,6 +19,8 @@
 
     <!-- Bootstrap CSS -->
     <link id="globalsync-css" href="{{ asset('assets/css/demo.css ') }}" rel="stylesheet" />
+    <link id="globalsync-css" rel="stylesheet" href="{{ asset('assets/css/globalsync.css ') }}" />
+
 
     <style>
         li {
@@ -29,9 +31,6 @@
             color: rgb(255, 1, 1);
         }
     </style>
-    {{-- <style type="text/css">
-        #results { padding:20px; border:1px solid; background:#ccc; }
-    </style> --}}
 
     <title>GLOBALSYNC THANK YOU</title>
 </head>
@@ -46,12 +45,8 @@
                         <div class=" text-center">
                             <img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" />
                         </div>
-
-                        <div class="justify-content-between align-items-center mb-3" style="margin-top: 100px!important">
-                            <h4>Dear Customer,</h4>
-                            <p>We are working on your dashboard as per your requirement.</p>
-                            <p>You will shortly receive all details from us and confirmation to login and access
-                                dashboard.</p>
+                        <div class="card-body pt-5">
+                            @include('component.alert')
                         </div>
                     </div>
                 </div>

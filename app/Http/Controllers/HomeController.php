@@ -140,13 +140,13 @@ class HomeController extends Controller
                 if ($getdata > 0) {
                 $incid = $getdata + 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = $data."ID-" . $num_padded;
+                $visitorID = strtoupper($data)."ID-" . $num_padded;
                 // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = $data."ID-" . $num_padded;
+                $visitorID = strtoupper($data)."ID-" . $num_padded;
                 // dd($visitorID);
             }
 
@@ -158,14 +158,13 @@ class HomeController extends Controller
 
             return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany]);
         } else {
-            return back()->withError($exception->getMessage())->withInput();
-
+            dd('Back');
         }
     }
 
     // Visitor Registration Save
 
-    public function UvisitorSave(Request $request)
+    public function UvisitorSave(Request $request, AppMailer $mailer)
     {
         // dd($request->all());
         try {
@@ -209,6 +208,22 @@ class HomeController extends Controller
             $complRegis->companyCode = $request->companyCode;
 
             $result = $complRegis->save();
+
+            // Host Notification
+            $get = \App\Models\User::where('company_name', $request->companyCode)->pluck('email')->first();
+            // dd($get);
+            // $getinfo = \App\Models\Visitor::latest()->get();
+            // dd($getinfo, $request->name, $request->host, $request->purpose);
+
+            if($request->host == null)
+            {
+                $host = 'NA';
+            }
+            else
+            {
+                $host = $request->host;
+            }
+            // $mailer->sendHostNotification($get, $request->name, $host, $request->purpose);
 
             if ($result) {
                 return redirect()->route('user.sumbit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
@@ -416,5 +431,10 @@ class HomeController extends Controller
     public function pagetest()
     {
         return view('emails.visitorSinup');
+    }
+
+    public function signUpthankyou()
+    {
+        return view('pages.sign-up-thanku');
     }
 }

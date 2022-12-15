@@ -30,13 +30,14 @@
                 <!-- User Account -->
                 <li class="dropdown user-menu">
                     <button class="dropdown-toggle nav-link ec-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (Auth::user()->company_logo != '')
+                        {{-- @if (Auth::user()->company_logo != '')
                             @foreach (explode(',', Auth::user()->company_logo) as $ref)
                                 <img src="{{ '/' . $ref }}" class="user-image" alt="{{ $ref }}">
                             @endforeach
                         @else
                             <img class="user-image" src="{{ asset('assets/img/user/user.png ') }}" alt="{{ Auth::user()->company_name }}">
-                        @endif
+                        @endif --}}
+                        <img class="user-image" src="{{ asset('assets/img/user/user.png ') }}" alt="{{ Auth::user()->company_name }}">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu">
                         <!-- User image -->

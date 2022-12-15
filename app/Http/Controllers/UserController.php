@@ -64,7 +64,7 @@ class UserController extends Controller
             $imageNameArr = [];
 
             $this->validate($request, [
-                'company_name'     => 'required',
+                // 'company_name'     => 'required',
                 'company_phone'    => 'required|digits:10',
                 'address'          => 'required',
                 'postcode'         => 'required',
@@ -89,13 +89,14 @@ class UserController extends Controller
             }
 
             User::where('id', $request->user_id)->update([
-                'company_name'      => $request->company_name,
+                // 'company_name'      => $request->company_name,
                 'company_phone'     => $request->company_phone,
                 'address'           => $request->address,
                 'postcode'          => $request->postcode,
                 'country'           => $request->country,
                 'state'             => $request->state,
                 'company_logo'      => $picture,
+                'approve'           => $request->approve,
             ]);
 
             return redirect()->back()->with("usersuccess", "Company Profile Updated Successfully!");

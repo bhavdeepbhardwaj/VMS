@@ -85,8 +85,8 @@ class LoginController extends Controller
                 return redirect()->route('admin.home');
             } else if (Auth()->user()->role == 2) {
                 if (is_null(Auth()->user()->approve)) {
-                    return redirect()->route('profile');
-                    // return redirect()->route('thankYou.user');
+                    // return redirect()->route('profile');
+                    return redirect()->route('thankYou.user');
                     // and laravel will then handle the redirect
                 }
                 return redirect()->route('user.list');

@@ -49,14 +49,13 @@
     <section class=" container-lg pb-3">
         <div class="row">
             <div class="container">
-
-                <div class=" text-center ">
+                {{-- <div class=" text-center ">
                     <a href="/" title="GLOBALSYNC">
                         <img class="w-25 pt-40 pb-40" src="{{ asset('assets/img/logo/logo.png') }}" alt="GLOBALSYNC" />
                     </a>
-                </div>
+                </div> --}}
                 <!-- CONTENT WRAPPER -->
-                <div class="container">
+                <div class="container pt-40">
                     <div class="row justify-content-center">
                         <div class="col-md-12 col-12 col-lg-12">
                             <div class="card">
@@ -84,10 +83,11 @@
                                             <div class="col-12 col-md-12 col-lg-12">
                                                 <div class="row">
 
-                                                    {{-- Visitor ID --}}
-                                                    <div class="col-md-12 col-lg-12" >
+                                                    {{-- Company Code ID --}}
+                                                    <div class="col-md-12 col-lg-12" hidden>
                                                         <div class="mb-3">
-                                                            <label for="companyCode" class="form-label">Company Code</label>
+                                                            <label for="companyCode" class="form-label">Company
+                                                                Code</label>
                                                             <input type="text" class="form-control" id="companyCode"
                                                                 aria-describedby="companyCodeHelp" name="companyCode"
                                                                 value="{{ $data }}" readonly>
@@ -96,7 +96,7 @@
 
 
                                                     {{-- Visitor ID --}}
-                                                    <div class="col-md-12 col-lg-12" >
+                                                    <div class="col-md-12 col-lg-12" hidden>
                                                         <div class="mb-3">
                                                             <label for="visitorID" class="form-label">Visitor ID</label>
                                                             <input type="text" class="form-control" id="visitorID"
@@ -164,7 +164,8 @@
                                                     {{-- Product Serial Number --}}
                                                     <div class="col-md-6 col-md-6">
                                                         <div class="mb-3">
-                                                            <label for="host" class="form-label">Host / Meeting With</label>
+                                                            <label for="host" class="form-label">Host / Meeting
+                                                                With</label>
                                                             <input type="text"
                                                                 class="form-control @error('host') is-invalid @enderror"
                                                                 id="host" aria-describedby="hostHelp"
@@ -190,14 +191,17 @@
                                                                 name="purpose">
                                                                 {{-- @if (!$user->gender) --}}
                                                                 <option value="">Select Purpose</option>
-                                                                @foreach($explodecompany as $key => $value)
-                                                                <option value="{{$value}}">{{$value}}</option>
-                                                                @endforeach
-                                                                {{--<option value="Meeting">Meeting</option>
+                                                                {{-- @foreach ($explodecompany as $key => $value)
+                                                                    <option value="{{ $value }}">
+                                                                        {{ $value }}</option>
+                                                                @endforeach --}}
+                                                                <option value="Meeting">Meeting</option>
                                                                 <option value="Interview">Interview</option>
                                                                 <option value="Employee">Employee</option>
                                                                 <option value="Visitor">Visitor</option>
-                                                                <option value="Other">Other</option>--}}
+                                                                <option value="Client">Client</option>
+                                                                <option value="Customer">Customer</option>
+                                                                <option value="Other">Other</option>
                                                                 @error('purpose')
                                                                     <span class="invalid-feedback form-text"
                                                                         id="purposeHelp" role="alert">
@@ -214,7 +218,7 @@
                                                     <div class="col-md-6 col-md-6">
                                                         <div class="mb-3">
                                                             <label for="address" class="form-label">Address <span
-                                                                class="required"> *</span></label>
+                                                                    class="required"> *</span></label>
                                                             <input type="text"
                                                                 class="form-control @error('address') is-invalid @enderror"
                                                                 id="address" aria-describedby="addressHelp"
@@ -264,7 +268,7 @@
                                                 {{-- <button type="submit" class="btn btn-primary view-detail"
                                                     onClick="take_snapshot()" data-bs-toggle="modal"
                                                     data-bs-target="#modal-contact">Submit</button> --}}
-                                                    <button type="submit" class="btn btn-primary"
+                                                <button type="submit" class="btn btn-primary"
                                                     onClick="take_snapshot()">Submit</button>
                                             </div>
                                     </form>

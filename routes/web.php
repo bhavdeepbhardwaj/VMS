@@ -135,6 +135,9 @@ Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('pr
 // Thank You
 Route::get('Thank-you', [HomeController::class, 'thankYou'])->name('thankYou');
 
+// Sign UP Thank You
+Route::get('sign-up-thanku-you', [HomeController::class, 'signUpthankyou'])->name('sign-up-thank');
+
 
 Route::get('pagetest', [HomeController::class, 'pagetest'])->name('pagetest');
 

@@ -21,7 +21,7 @@
                                                 alt="{{ Auth::user()->company_logo }}" style="width: 50%; padding-bottom: 20px;">
                                             <br />
                                         @else
-                                            <img class="ec-image-preview" src="{{ asset('assets/img/user/user.png') }}"
+                                            <img class="ec-image-preview" src="{{ asset('assets/img/logo/demo.png') }}"
                                                 alt="{{ Auth::user()->company_logo }}" style="width: 50%; padding-bottom: 20px;">
                                         @endif
                                     </div>
@@ -58,6 +58,7 @@
                     @include('component.alert')
                     <div class="row mt-2">
                         <input type="hidden" class="form-select1" value="{{ Auth::user()->id }}" name="user_id">
+                        <input type="hidden" class="form-select1" value="1" name="approve">
                         <div class="col-md-6"><label class="labels">Admin Name</label>
                             <input type="text" class="form-select1 "  placeholder="Admin Name"
                                 value="{{ Auth::user()->admin_name }}" name="admin_name">
@@ -65,7 +66,7 @@
                         <div class="col-md-6">
                             <label class="labels">Company Name</label>
                             <input type="text" class="form-select1 @error('company_name') is-invalid @enderror"
-                                value="{{ Auth::user()->company_name }}" placeholder="Company Name" name="company_name">
+                                value="{{ Auth::user()->company_name }}" disabled placeholder="Company Name" >
                             @error('company_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

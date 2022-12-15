@@ -16,6 +16,7 @@ class CreatePurposesTable extends Migration
         Schema::create('purposes', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->string('companyName');
             $table->timestamps();
         });
     }

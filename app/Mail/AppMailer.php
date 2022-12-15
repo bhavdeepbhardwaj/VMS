@@ -20,8 +20,8 @@ class AppMailer
 {
 
     public $mailer;
-    public $fromAddress = 'sales@globalsync.com.au';
-    // public $fromAddress = 'noreply@gee.com.au';
+    // public $fromAddress = 'sales@globalsync.com.au';
+    public $fromAddress = 'bhavdeepb.gee@gmail.com';
     public $fromName = 'GLOBALSYNC';
     public $to;
     public $subject;
@@ -57,6 +57,19 @@ class AppMailer
         $this->subject = "VMS New LEAD";
         $this->view = 'emails.leads';
         $this->data = compact('users', 'users');
+        return $this->deliver();
+    }
+
+    // Host Notification
+
+    public function sendHostNotification($user, $vname, $vhost, $vpurpose)
+    {
+
+        $this->to = $user;
+        // $this->to = ['bhavdeepb.gee@gmail.com'];
+        $this->subject = "New Visitor Arrived";
+        $this->view = 'emails.hostnotification';
+        $this->data = compact('user', 'vname', 'vhost', 'vpurpose');
         return $this->deliver();
     }
 

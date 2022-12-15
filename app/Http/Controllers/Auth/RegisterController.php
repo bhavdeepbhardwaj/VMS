@@ -82,7 +82,7 @@ class RegisterController extends Controller
 
         $data->save();
 
-        return redirect()->back()->with("status", "Your request has been sent successfully to team will be a connect you Thank You");
+        return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
     }
 
     public function register(Request $request, AppMailer $mailer)
@@ -93,11 +93,12 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        // $mailer->sendVisitorRegistrationInformationLeads($get);
+        $mailer->sendVisitorRegistrationInformationLeads($get);
 
-        return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
+        // return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
+        return redirect()->route('sign-up-thank')->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
     }
 
     public function showRegistrationForm()

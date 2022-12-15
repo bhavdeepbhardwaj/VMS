@@ -121,8 +121,8 @@
                         @if (Auth::user()->role == 1)
                             <a href="{{ route('admin.home') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a>
                         @elseif (Auth::user()->role == 2 )
-                            <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a>
-                            {{-- <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a> --}}
+                            {{-- <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a> --}}
+                            <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a>
                         @elseif (Auth::user()->role == 0)
                             <a href="{{ route('demo.index') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
                                 Dashboard</a>

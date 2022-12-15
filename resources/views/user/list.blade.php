@@ -126,7 +126,7 @@
                                 <a href="/" title="{{ Auth::user()->company_name }}">
                                     @if (Auth::user()->company_logo != '')
                                         @foreach (explode(',', Auth::user()->company_logo) as $ref)
-                                            <img class="pt-5 w-25" src="{{ Auth::user()->company_logo }}"
+                                            <img class="pt-5 w-25" src="../{{ Auth::user()->company_logo }}"
                                                 alt="{{ Auth::user()->company_logo }}" />
                                         @endforeach
                                     @else
