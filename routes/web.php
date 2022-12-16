@@ -168,19 +168,36 @@ Route::get('demo/submit', [HomeController::class, 'demoSubmitForm'])->name('demo
 
 Route::get('/get-visitor-chart-data', [HomeController::class, 'getMonthlyVisitorRegistrationData']);
 
+
+// Optimize
 Route::get('/Optimize', function () {
     // Config Cache & Clear
-    $clearconfig = Artisan::call('config:cache');
-    $clearconfig = Artisan::call('config:clear');
+    $configcache = Artisan::call('config:cache');
+    $configclear = Artisan::call('config:clear');
     // Cache Clear
-    $clearcache = Artisan::call('cache:clear');
+    $cacheclear = Artisan::call('cache:clear');
     // Route Cache & Clear
-    $clearconfig = Artisan::call('route:clear');
-    $clearconfig = Artisan::call('route:cache');
+    $routeclear = Artisan::call('route:clear');
+    $routecache = Artisan::call('route:cache');
     // View Clear
-    $clearview = Artisan::call('view:clear');
+    $viewclear = Artisan::call('view:clear');
+    $viewcache = Artisan::call('view:cache');
 
     echo "Optimize ...!<br>";
     // return redirect()->back()->with("success", "Optimize ...!");
+});
 
+// // Migrate Fresh Table
+Route::get('/re-migrate', function () {
+    // Migrate Fresh Table
+    $migrate = Artisan::call('migrate:fresh');
+    echo "Migrate Fresh...!<br>";
+});
+
+// Seeder
+Route::get('/db-seed', function () {
+    // php artisan db:seed
+    $dbseed = Artisan::call('db:seed');
+
+    echo "DB Seed!<br>";
 });
