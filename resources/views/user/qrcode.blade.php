@@ -10,23 +10,7 @@
     <link href="{{ asset('assets/plugins/data-tables/responsive.datatables.min.css') }}" rel='stylesheet'>
 
     <style>
-        .logo {
-            position: absolute;
-            width: 500px !important;
-            /* padding: 20px 50px 0px 60px; */
-            padding-right: 250px;
-            padding-left: 50px;
-        }
 
-        .name-company {
-            position: absolute;
-            /* padding: 510px 50px 0px 110px; */
-            padding: 350px 50px 0px 80px;
-            font-size: 50px;
-            line-height: 1;
-            color: black;
-            text-shadow: 0 0 black;
-        }
     </style>
 @endsection
 
@@ -64,15 +48,21 @@
                     <div class="card card-default">
                         <div class="card-body" id="converttoPDF">
                             <div class="row">
-                                <img src="{{ asset('assets/img/qrCode/Landscape.png') }}" class="w-100" />
-                                <img src="{{ asset('assets/img/logo/demo.png') }}" class="logo" />
-                                <h2 class="name-company">{{ Auth::user()->company_name }}</h2>
-                                {{-- <div class=" col-md-6 col-lg-6 text-center">
-                                    <img src="../{{ Auth::user()->company_logo }}" class="w-50" />
+                                <div class=" col-md-6 col-lg-6 text-center">
+                                    <p>Here is you link and your Qr Code <a href="{{ route('user.visitor', Auth::user()->company_name) }}" target="_blank"><i
+                                            class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a></p>
+                                    @if (Auth::user()->qrCode != null)
+                                        <img src="../{{ Auth::user()->qrCode }}" class="w-50" />
+                                    @else
+                                        <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75" />
+                                    @endif
                                 </div>
                                 <div class=" col-md-6 col-lg-6 ">
-                                    <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75"/>
-                                </div> --}}
+                                    @if (Auth::user()->company_logo)
+                                    @else
+                                    @endif
+                                    <img src="{{ asset('assets/img/logo/demo.png') }}" class="w-75" />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AppMailer;
 use App\Models\Demo;
 use App\Models\Guest;
+use App\Models\Purpose;
 use App\Models\Visitor;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -127,7 +128,7 @@ class HomeController extends Controller
         // dd($data);
         $checkCompany = \App\Models\User::where('company_name', $data)->get();
 
-        $companyArr = \App\Models\Purpose::where('companyName',$data)->pluck('name')->first();
+        $companyArr = Purpose::where('companyName',$data)->pluck('name')->first();
         $explodecompany = explode(',',$companyArr);
         // dd($explodecompany);
         // dd($companyArr);
@@ -158,7 +159,8 @@ class HomeController extends Controller
 
             return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany]);
         } else {
-            dd('Back');
+            // dd('Back');
+            return view('errors.419');
         }
     }
 
@@ -183,6 +185,7 @@ class HomeController extends Controller
             if ($request->pic == null) {
                 return redirect()->back()->with("error", "The Image field is required...!!!");
             }
+            
             $img = $request->pic;
 
             $image_parts = explode(";base64,", $img);

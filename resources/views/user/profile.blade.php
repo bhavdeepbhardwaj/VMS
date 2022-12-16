@@ -24,7 +24,9 @@
                                             <img class="ec-image-preview" src="{{ asset('assets/img/logo/demo.png') }}"
                                                 alt="{{ Auth::user()->company_logo }}" style="width: 50%; padding-bottom: 20px;">
                                         @endif
+
                                     </div>
+                                    <small>Logo Size requirement: 200 x 80 px</small>
                                 </div>
                                 <div class="avatar-edit">
                                     <input type='file' hidden id="imageUpload"

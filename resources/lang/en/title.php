@@ -27,11 +27,11 @@ return [
 
     // User
 
-    'user'                                           => 'VISITOR | REGISTRATION | DASHBOARD',
-    'profile'                                        => 'VISITOR | REGISTRATION | PROFILE',
-    'password_change'                                => 'VISITOR | REGISTRATION | PASSWORD | CHANGE',
-    'contact'                                        => 'VISITOR | REGISTRATION | CONTACT US',
-    'list'                                         => 'VISITOR | REGISTRATION',
+    'user'                                           => 'VISITOR | DASHBOARD',
+    'profile'                                        => 'VISITOR | DASHBOARD | PROFILE',
+    'password_change'                                => 'VISITOR | DASHBOARD | PASSWORD | CHANGE',
+    'contact'                                        => 'VISITOR | DASHBOARD | CONTACT US',
+    'list'                                           => 'VISITOR | DASHBOARD | DETAILS ',
 
     // Demo
     'demo_home'                                      => 'DEMO | DASHBOARD',

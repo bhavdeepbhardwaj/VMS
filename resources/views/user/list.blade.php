@@ -26,7 +26,7 @@
                     <form action="{{ route('datefilterVisitor') }}" method="GET">
                         {{ csrf_field() }}
                         <div class="input-group mb-3">
-                            {{-- <input type="date" required class="form-control @error('start_date') is-invalid @enderror"
+                            <input type="date" required class="form-control @error('start_date') is-invalid @enderror"
                                 name="start_date">
                             @error('start_date')
                                 <span class="alert alert-danger" id="start_dateHelp" role="alert">
@@ -44,7 +44,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <a href="{{ route('exportAllVisitorRegistration') }}" class="btn btn-primary">Export File</a> --}}
+                            <a href="{{ route('exportAllVisitorRegistration') }}" class="btn btn-primary">Export File</a>
                             {{--  <button onclick="ExportToExcel('xlsx')" class="btn btn-primary">Export File</button>  --}}
                         </div>
                     </form>

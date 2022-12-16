@@ -3,7 +3,7 @@
     <div class="copyright bg-white">
         <p>
             Copyright &copy; <span id="ec-year"></span><a class="text-primary"
-            href="/" target="_blank"> GLOBALSYNC Dashboard</a>. All Rights Reserved.
+            href="https://globalsync.com.au/" target="_blank"> GLOBALSYNC Dashboard</a>. All Rights Reserved.
           </p>
     </div>
 </footer>

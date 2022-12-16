@@ -119,10 +119,17 @@
                     <div class="align-content-center justify-content-sm-center text-center p-lg-9">
 
                         @if (Auth::user()->role == 1)
-                            <a href="{{ route('admin.home') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a>
-                        @elseif (Auth::user()->role == 2 )
-                            {{-- <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a> --}}
-                            <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a>
+                            <a href="{{ route('admin.home') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
+                                Dashboard</a>
+                        @elseif (Auth::user()->role == 2)
+                            @if (is_null(Auth()->user()->approve))
+                                <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
+                                    Dashboard</a>
+                            @else
+                            <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
+                                Dashboard</a>
+                            @endif
+                            {{-- <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a> --}}
                         @elseif (Auth::user()->role == 0)
                             <a href="{{ route('demo.index') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
                                 Dashboard</a>
@@ -152,8 +159,8 @@
                             <div class="row">
                                 <div class="form-group col-md-12 mb-4">
                                     <input type="email" class="form-select1 @error('email') is-invalid @enderror"
-                                        id="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus
-                                        placeholder="Email">
+                                        id="email" name="email" value="{{ old('email') }}" autocomplete="email"
+                                        autofocus placeholder="Email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

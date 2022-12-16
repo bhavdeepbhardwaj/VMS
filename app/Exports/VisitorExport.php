@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Visitor;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VisitorExport implements FromCollection
 // {
@@ -54,13 +55,17 @@ class VisitorExport implements FromCollection
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
 
-            $url = 'https://visitor.globalsyncteam.com/Visitor/';
+            // dd($start_date,$end_date);
+
+            $url = 'https://visitor.globalsync.com.au/Visitor/';
 
             $check = Visitor::whereBetween('created_at', [$start_date, $end_date])->count();
 
             // dd($check);
 
-            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->whereBetween('created_at', [$start_date, $end_date])->get();
+            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->Where('companyCode', Auth::user()->company_name)->whereBetween('created_at', [$start_date, $end_date])->get();
+
+            dd($export_data);
 
             $data_array[] = array(
                 'DATE',
@@ -91,9 +96,13 @@ class VisitorExport implements FromCollection
             // dd($data_array);
             return collect($data_array);
         } else {
-            $url = 'https://visitor.globalsyncteam.com/Visitor/';
+            $url = 'https://visitor.globalsync.com.au/Visitor/';
 
-            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->get();
+            $companyName = Auth::user()->company_name;
+
+            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->where('companyCode', Auth::user()->company_name)->get();
+
+            // dd($export_data);
 
             $data_array[] = array(
                 'DATE',
