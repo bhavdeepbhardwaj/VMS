@@ -128,8 +128,8 @@ class HomeController extends Controller
         // dd($data);
         $checkCompany = \App\Models\User::where('company_name', $data)->get();
 
-        $companyArr = Purpose::where('companyName',$data)->pluck('name')->first();
-        $explodecompany = explode(',',$companyArr);
+        $companyArr = \App\Models\Purpose::where('companyName', $data)->pluck('name')->first();
+        $explodecompany = explode(',', $companyArr);
         // dd($explodecompany);
         // dd($companyArr);
         // dd(count($checkCompany));
@@ -138,19 +138,18 @@ class HomeController extends Controller
             $getdata = \App\Models\Visitor::where('companyCode', $data)->count();
 
             // if (isset($getdata) && $getdata) {
-                if ($getdata > 0) {
+            if ($getdata > 0) {
                 $incid = $getdata + 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = strtoupper($data)."ID-" . $num_padded;
+                $visitorID =  preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
                 // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID = strtoupper($data)."ID-" . $num_padded;
+                $visitorID = preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
                 // dd($visitorID);
             }
-
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -172,9 +171,8 @@ class HomeController extends Controller
         try {
             $this->validate($request, [
                 'name' => 'required',
-                // 'email'                => 'required',
-                // 'phone'                => 'required|regex:/^(?:\d{11})$/i',
-                'phone' => 'required||min:10|max:11',
+                'email'                => 'required',
+                'phone' => 'required|min:10|max:14',
                 // 'host'                 => 'required',
                 'address' => 'required',
                 'purpose' => 'required',
@@ -185,7 +183,7 @@ class HomeController extends Controller
             if ($request->pic == null) {
                 return redirect()->back()->with("error", "The Image field is required...!!!");
             }
-            
+
             $img = $request->pic;
 
             $image_parts = explode(";base64,", $img);
@@ -218,12 +216,9 @@ class HomeController extends Controller
             // $getinfo = \App\Models\Visitor::latest()->get();
             // dd($getinfo, $request->name, $request->host, $request->purpose);
 
-            if($request->host == null)
-            {
+            if ($request->host == null) {
                 $host = 'NA';
-            }
-            else
-            {
+            } else {
                 $host = $request->host;
             }
             // $mailer->sendHostNotification($get, $request->name, $host, $request->purpose);
@@ -249,6 +244,7 @@ class HomeController extends Controller
         }
         return view('pages.Usubmit', ['getdata' => $getdata]);
     }
+
 
     // Visitor Registration
 

@@ -11,7 +11,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -70,6 +72,11 @@ class RegisterController extends Controller
      */
     public function create(array $data)
     {
+        $image = \QrCode::size(200)->errorCorrection('H')
+                 ->generate('http://127.0.0.1:8000/resgvisitor/'.$data['company_name']);
+        $output_file = '/qr-code/img-' . time() . '.png';
+        Storage::disk('local')->put($output_file, $image);
+        // dd($output_file, $image);
         $data = User::create([
             'admin_name' => $data['admin_name'],
             'company_name' => $data['company_name'],
@@ -78,6 +85,7 @@ class RegisterController extends Controller
             'is_admin' => 2,
             'role' => 2,
             'password' => Hash::make($data['password']),
+            'qrCode'    => $image,
         ]);
 
         $data->save();
@@ -93,9 +101,13 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        $mailer->sendVisitorRegistrationInformationLeads($get);
+        // $mailer->sendVisitorRegistrationInformationLeads($get);
+
+        // Visitor Registration qr code.
+
+        // QrCode::size(300)->generate("http://127.0.0.1:8000/resgvisitor/"."$request->company_name", public_path("qr-code/$request->company_name"));
 
         // return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
         return redirect()->route('sign-up-thank')->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");

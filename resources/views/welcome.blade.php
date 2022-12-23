@@ -111,7 +111,7 @@
                     <div class=" align-content-center justify-content-sm-center text-center pt-4">
                         <a href="/" title="GLOBALSYNC" class=" text-center">
                             <img class=" m-2" src="{{ asset('assets/img/logo/logo.png ') }}" style="padding-top: 120px"
-                                alt="DEMO-INDIA" />
+                                alt="GLOBALSYNC" />
                         </a>
                     </div>
                     <h2 class=" my-2 text-center text-capitalize p-3" style="color:#ffcc06">Member Already Logged-In</h2>

@@ -49,19 +49,24 @@
                         <div class="card-body" id="converttoPDF">
                             <div class="row">
                                 <div class=" col-md-6 col-lg-6 text-center">
-                                    <p>Here is you link and your Qr Code <a href="{{ route('user.visitor', Auth::user()->company_name) }}" target="_blank"><i
-                                            class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a></p>
+                                    <p>Here is you link and your Qr Code <a
+                                            href="{{ route('user.visitor', Auth::user()->company_name) }}"
+                                            target="_blank"><i
+                                                class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a></p><br />
                                     @if (Auth::user()->qrCode != null)
-                                        <img src="../{{ Auth::user()->qrCode }}" class="w-50" />
+                                        {!! Auth::user()->qrCode !!}
                                     @else
-                                        <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75" />
+                                        <img src="{{ asset('qr-code/demo-qrCode.png') }}" class="w-50" />
                                     @endif
                                 </div>
                                 <div class=" col-md-6 col-lg-6 ">
-                                    @if (Auth::user()->company_logo)
-                                    @else
-                                    @endif
-                                    <img src="{{ asset('assets/img/logo/demo.png') }}" class="w-75" />
+                                    <div class=" pt-80">
+                                        @if (Auth::user()->company_logo != null)
+                                            <img src="/{{ Auth::user()->company_logo }}" alt="{{ Auth::user()->company_name }}" class="w-75" />
+                                        @else
+                                            <img src="{{ asset('assets/img/logo/demo.png') }}" class="w-" />
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

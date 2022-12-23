@@ -63,7 +63,7 @@ class VisitorExport implements FromCollection
 
             // dd($check);
 
-            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->Where('companyCode', Auth::user()->company_name)->whereBetween('created_at', [$start_date, $end_date])->get();
+            $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->whereBetween('created_at', [$start_date, $end_date])->orWhere('companyCode', 'LIKE', '%'. Auth::user()->company_name .'%')->orderby('created_at')->get();
 
             dd($export_data);
 
@@ -102,7 +102,7 @@ class VisitorExport implements FromCollection
 
             $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->where('companyCode', Auth::user()->company_name)->get();
 
-            // dd($export_data);
+            dd($export_data);
 
             $data_array[] = array(
                 'DATE',

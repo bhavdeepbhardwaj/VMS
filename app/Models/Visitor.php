@@ -17,5 +17,7 @@ class Visitor extends Model
         'host',
         'purpose',
         'pic',
+        'companyCode',
+        'address'
     ];
 }

@@ -26,6 +26,7 @@
     <!-- Oral Square CSS -->
     <link id="globalsync-css" href="{{ asset('assets/css/globalsync.css ') }}" rel="stylesheet" />
     <link id="globalsync-css" href="{{ asset('assets/css/demo.css ') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/intl-tel-input/intlTelInput.css') }}" rel="stylesheet" />
 
 
 
@@ -127,7 +128,8 @@
                                                     {{--  Email --}}
                                                     <div class="col-md-6 col-md-6">
                                                         <div class="mb-3">
-                                                            <label for="email" class="form-label">Email</label>
+                                                            <label for="email" class="form-label">Email <span
+                                                                class="required"> *</span></label>
                                                             <input type="email"
                                                                 class="form-control @error('email') is-invalid @enderror"
                                                                 id="email" aria-describedby="emailHelp"
@@ -146,12 +148,12 @@
                                                     <div class="col-md-6 col-md-6">
                                                         <div class="mb-3">
                                                             <label for="phone" class="form-label">Phone <span
-                                                                    class="required"> *</span></label>
+                                                                    class="required"> *</span></label><br />
                                                             <input type="tel"
                                                                 class="form-control @error('phone') is-invalid @enderror"
-                                                                id="phone" aria-describedby="phoneHelp"
+                                                                id="" aria-describedby="phoneHelp"
                                                                 name="phone" value="{{ old('phone') }}"
-                                                                autocomplete="phone">
+                                                                autocomplete="phone" data-intl-tel-input-id="0">
                                                             @error('phone')
                                                                 <span class="invalid-feedback form-text" id="phoneHelp"
                                                                     role="alert">
@@ -336,6 +338,28 @@
         }
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script> --}}
+
+    <script>
+        // Vanilla Javascript
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, ({
+            // options here
+            preferredCountries: ["in", "au", "ph", "us"],
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        }));
+
+        $(document).ready(function() {
+            $('.iti__flag-container').click(function() {
+                var countryCode = $('.iti__selected-flag').attr('title');
+                var countryCode = countryCode.replace(/[^0-9]/g, '')
+                $('#phone').val("");
+                $('#phone').val("+" + countryCode + "-" + $('#phone').val());
+            });
+        });
+    </script>
 </body>
 
 </html>

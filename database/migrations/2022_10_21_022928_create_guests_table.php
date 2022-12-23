@@ -16,13 +16,13 @@ class CreateGuestsTable extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->string('visitorID')->unique();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('host');
-            $table->string('purpose');
-            $table->string('pic');
-            $table->text('address');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('host')->nullable();
+            $table->string('purpose')->nullable();
+            $table->string('pic')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

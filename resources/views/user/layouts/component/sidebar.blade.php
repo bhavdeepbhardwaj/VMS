@@ -48,7 +48,7 @@
                     </a>
                 </li>  --}}
 
-                <!-- Clinic Registration -->
+                <!-- Visitor Registration -->
                 <li class="">
                     <a class="sidenav-item-link" href="{{ route('user.list') }}">
                         <i class="mdi mdi-account-card-details"></i>
@@ -57,12 +57,13 @@
                     <hr>
                 </li>
 
-                 {{-- <li class="">
+                <!-- Visitor QR Code -->
+                 <li class="">
                     <a class="sidenav-item-link" href="{{ route('user.qrcode') }}">
-                        <i class="mdi mdi-account"></i>
+                        <i class="mdi mdi-qrcode-scan"></i>
                         <span class="nav-text">QR Code</span>
                     </a>
-                </li> --}}
+                </li>
 
 
                 {{-- <li>

@@ -37,22 +37,22 @@
                         @else
                             <img class="user-image" src="{{ asset('assets/img/user/user.png ') }}" alt="{{ Auth::user()->company_name }}">
                         @endif --}}
-                        <img class="user-image" src="{{ asset('assets/img/user/user.png ') }}" alt="{{ Auth::user()->company_name }}">
+                        <img class="user-image" src="{{ asset('assets/img/user/user.png ') }}"
+                            alt="{{ Auth::user()->company_name }}">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu">
                         <!-- User image -->
                         <li class="dropdown-header">
-                            @if (Auth::user()->company_logo != '')
-
-                                @foreach (explode(',', Auth::user()->company_logo) as $ref)
-                                    <img src="{{ '/' . $ref }}" class="img-circle" alt="{{ $ref }}">
-                                @endforeach
-                            @else
-                                <img src="{{ asset('assets/img/user/user.png ') }}" class="img-circle" alt="{{ Auth::user()->company_name }}">
-                            @endif
+                            <img src="{{ asset('assets/img/user/user.png ') }}" class="img-circle"
+                                alt="{{ Auth::user()->company_name }}">
                             <div class="d-inline-block">
                                 {{ Auth::user()->company_name }} <small class="pt-1">{{ Auth::user()->email }}</small>
                             </div>
+                        </li>
+                        <li>
+                            <a href="{{ route('profile') }}">
+                                <i class="mdi mdi-account"></i> My Profile
+                            </a>
                         </li>
                         <li class="dropdown-footer">
                             <a href="{{ route('logout') }}"

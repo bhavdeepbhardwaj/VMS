@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('company_name')->nullable();
             $table->string('company_logo')->nullable();
             $table->string('company_phone')->nullable();
-            $table->string('qrCode')->nullable();
+            $table->text('qrCode')->nullable();
             $table->string('email');
             $table->string('address')->nullable();
             $table->string('postcode')->nullable();
