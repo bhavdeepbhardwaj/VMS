@@ -123,7 +123,8 @@
                                 Dashboard</a>
                         @elseif (Auth::user()->role == 2)
                             @if (is_null(Auth()->user()->approve))
-                                <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
+                                {{-- <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} --}}
+                                <a href="{{ route('profile') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
                                     Dashboard</a>
                             @else
                             <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }}

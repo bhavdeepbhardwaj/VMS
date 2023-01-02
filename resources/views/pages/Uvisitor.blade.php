@@ -26,7 +26,7 @@
     <!-- Oral Square CSS -->
     <link id="globalsync-css" href="{{ asset('assets/css/globalsync.css ') }}" rel="stylesheet" />
     <link id="globalsync-css" href="{{ asset('assets/css/demo.css ') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets/plugins/intl-tel-input/intlTelInput.css') }}" rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/intl-tel-input/intlTelInput.css') }}" rel="stylesheet" /> --}}
 
 
 
@@ -151,7 +151,7 @@
                                                                     class="required"> *</span></label><br />
                                                             <input type="tel"
                                                                 class="form-control @error('phone') is-invalid @enderror"
-                                                                id="" aria-describedby="phoneHelp"
+                                                                id="phone" aria-describedby="phoneHelp"
                                                                 name="phone" value="{{ old('phone') }}"
                                                                 autocomplete="phone" data-intl-tel-input-id="0">
                                                             @error('phone')
@@ -338,8 +338,8 @@
         }
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script> --}}
 
     <script>
