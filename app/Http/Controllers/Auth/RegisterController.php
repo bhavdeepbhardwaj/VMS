@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\AppMailer;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -26,7 +25,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -73,10 +72,15 @@ class RegisterController extends Controller
     public function create(array $data)
     {
         $image = \QrCode::size(200)->errorCorrection('H')
-                 ->generate('http://127.0.0.1:8000/resgvisitor/'.$data['company_name']);
-        $output_file = '/qr-code/img-' . time() . '.png';
-        Storage::disk('public')->put($output_file, $image);
+            ->generate('http://127.0.0.1:8000/resgvisitor/' . $data['company_name']);
+
+        //  dd($image);
+
+        $output_file = 'img-' . time() . '.svg';
+        Storage::disk('qr-code')->put($output_file, $image);
+
         // dd($output_file, $image);
+
         $data = User::create([
             'admin_name' => $data['admin_name'],
             'company_name' => $data['company_name'],
@@ -85,7 +89,8 @@ class RegisterController extends Controller
             'is_admin' => 2,
             'role' => 2,
             'password' => Hash::make($data['password']),
-            'qrCode'    => $image,
+            // 'qrCode'    => $image,
+            'qrCode' => $output_file,
         ]);
 
         $data->save();
@@ -110,6 +115,7 @@ class RegisterController extends Controller
         // QrCode::size(300)->generate("http://127.0.0.1:8000/resgvisitor/"."$request->company_name", public_path("qr-code/$request->company_name"));
 
         // return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
+        // return view('emails.visitorSinup',['user' => Auth::user(),'users' => $get]);
         return redirect()->route('sign-up-thank')->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
     }
 

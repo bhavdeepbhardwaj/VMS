@@ -61,17 +61,14 @@
                                                 <tr>
                                                     <td class="colpad" style="padding: 30px 35px;">
                                                         <div class="row" style="">
-                                                            <p>Here is you link and your Qr Code <a
-                                                                href="{{ route('user.visitor', $users->company_name) }}"
-                                                                {{-- href=""  --}}
-                                                                target="_blank"><i
-                                                                    class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+                                                            <p>Here is you <a  href="{{ route('user.visitor', $users->company_name) }}"  target="_blank">link </a>and your Qr Code
                                                         </p>
                                                             <div class="column" style="">
-                                                                {!! $users->qrCode !!}
-                                                                {!! html_entity_decode($users->qrCode) !!}
-                                                                <img src="data:image/svg+xml;base64,[{{ $users->qrCode }}]">
-
+                                                                {{-- <!--{{ $users->qrCode }}--> --}}
+                                                                {{-- <!--{!! html_entity_decode($users->qrCode) !!}--> --}}
+                                                                {{-- <img src="data:image/svg+xml;base64,[{{ $users->qrCode }}]"> --}}
+                                                                <img src="{{ '../qr-code/' . $users->qrCode }}" />
+                                                                {{-- <iframe src="{{ '../qr-code/' . $users->qrCode }}"></iframe> --}}
 
                                                             </div>
                                                             <div class="column" style="">
@@ -82,14 +79,14 @@
                                                         </div>
                                                         {{-- <p><strong>Dear ,</strong></p> --}}
                                                         <p><strong>Dear {{ $users->admin_name }},</strong></p>
-                                                        {!! $users->qrCode !!}
+                                                        {{-- {!! $users->qrCode !!} --}}
                                                         <p>Thank you for choosing our Visitor Management System to
                                                             manage visitors at the same time keeping your workplace safe
                                                             and secure.</p>
-                                                        <p>You will shortly receive the detail from us to access the VMS
+                                                        {{-- <p>You will shortly receive the detail from us to access the VMS
                                                             for your organisation.</p>
                                                         <p>Also, one of our executive will connect with you soon with
-                                                            all details.</p>
+                                                            all details.</p> --}}
                                                         <p>For any query or information, Email us at <a
                                                                 href="mailto:sales@globalsync.com.au">sales@globalsync.com.au</a>
                                                         </p>

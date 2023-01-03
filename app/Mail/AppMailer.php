@@ -26,7 +26,8 @@ class AppMailer
     public $to;
     public $subject;
     public $view;
-    public $bcc = 'developer@globalsync.com.au';
+    public $bcc = 'bhavdeepbhardwaj555@gmail.com';
+    // public $bcc = 'developer@globalsync.com.au';
     public $data = [];
 
     public function __construct(Mailer $mailer)

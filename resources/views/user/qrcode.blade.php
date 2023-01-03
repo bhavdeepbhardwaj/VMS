@@ -54,7 +54,8 @@
                                             target="_blank"><i
                                                 class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a></p><br />
                                     @if (Auth::user()->qrCode != null)
-                                        {!! Auth::user()->qrCode !!}
+                                        {{-- {!! Auth::user()->qrCode !!} --}}
+                                        <img src="{{ '../qr-code/' . Auth::user()->qrCode }}" class="w-50" />
                                     @else
                                         <img src="{{ asset('qr-code/demo-qrCode.png') }}" class="w-50" />
                                     @endif
