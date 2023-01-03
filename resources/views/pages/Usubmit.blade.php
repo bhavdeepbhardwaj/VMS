@@ -60,10 +60,19 @@
 
                                         <div class="row">
                                             <div class=" text-center">
+                                                @if ($getdata != null)
+                                                <a href="/" title="Globalsync">
+                                                    <img class="pt-5" src="{{ asset(''. $getdata->companyLogo) }}"
+                                                        alt="{{ $getdata->companyCode }}" />
+                                                </a>
+                                                    <br />
+                                                @else
                                                 <a href="/" title="Globalsync">
                                                     <img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}"
                                                         alt="Globalsync" />
                                                 </a>
+                                                @endif
+
                                             </div>
 
                                             <div class="col-lg-4 col-xl-3">
@@ -154,8 +163,9 @@
                                         onclick="generatePDF();">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="icon icon-tabler icon-tabler-file-download" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
                                             <path

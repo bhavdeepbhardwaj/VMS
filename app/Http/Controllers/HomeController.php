@@ -127,7 +127,8 @@ class HomeController extends Controller
     {
         // dd($data);
         $checkCompany = \App\Models\User::where('company_name', $data)->get();
-
+        $checkLogo = \App\Models\User::where('company_name', $data)->pluck('company_logo')->first();
+        // dd($checkLogo);
         $companyArr = \App\Models\Purpose::where('companyName', $data)->pluck('name')->first();
         $explodecompany = explode(',', $companyArr);
         // dd($explodecompany);
@@ -156,7 +157,7 @@ class HomeController extends Controller
 
         if (count($checkCompany) > 0) {
 
-            return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany]);
+            return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany, 'checkLogo' => $checkLogo]);
         } else {
             // dd('Back');
             return view('errors.419');
@@ -178,6 +179,7 @@ class HomeController extends Controller
                 'purpose' => 'required',
                 'visitorID' => 'required',
                 'pic' => 'required',
+                'companyLogo' => 'required',
             ]);
 
             if ($request->pic == null) {
@@ -207,6 +209,7 @@ class HomeController extends Controller
             $complRegis->pic = $fileName;
             $complRegis->visitorID = $request->visitorID;
             $complRegis->companyCode = $request->companyCode;
+            $complRegis->companyLogo = $request->companyLogo;
 
             $result = $complRegis->save();
 

@@ -63,13 +63,23 @@
                                 <div class=" col-md-6 col-lg-6 ">
                                     <div class=" pt-80">
                                         @if (Auth::user()->company_logo != null)
-                                            <img src="/{{ Auth::user()->company_logo }}" alt="{{ Auth::user()->company_name }}" class="w-75" />
+                                            <img src="/{{ Auth::user()->company_logo }}"
+                                                alt="{{ Auth::user()->company_name }}" class="w-75" />
                                         @else
                                             <img src="{{ asset('assets/img/logo/demo.png') }}" class="w-" />
                                         @endif
                                     </div>
                                 </div>
                             </div>
+                            <!-- Copyright -->
+                            <div class="text-center">
+                                <p style="color: #FFCC05; font-size: 18px; margin-top: -20px;">Powered by<a
+                                        class="text-primary" href="https://globalsync.com.au/" target="_blank"> <img
+                                            class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}"
+                                            alt="Globalsync" /></a>
+                                </p>
+                            </div>
+                            <!-- Copyright -->
                         </div>
                     </div>
                 </div>

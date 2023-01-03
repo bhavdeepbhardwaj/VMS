@@ -43,7 +43,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class=" text-center">
-                            <img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" />
+                            <a href="/"><img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" /></a>
                         </div>
                         <div class="card-body pt-5">
                             @include('component.alert')

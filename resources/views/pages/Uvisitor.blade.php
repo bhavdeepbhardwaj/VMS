@@ -95,6 +95,17 @@
                                                         </div>
                                                     </div>
 
+                                                    {{-- Company Code ID --}}
+                                                    <div class="col-md-12 col-lg-12" hidden>
+                                                        <div class="mb-3">
+                                                            <label for="companyLogo" class="form-label">Company
+                                                                Code</label>
+                                                            <input type="text" class="form-control" id="companyLogo"
+                                                                aria-describedby="companyLogoHelp" name="companyLogo"
+                                                                value="{{ $checkLogo }}" readonly>
+                                                        </div>
+                                                    </div>
+
 
                                                     {{-- Visitor ID --}}
                                                     <div class="col-md-12 col-lg-12" hidden>
@@ -129,7 +140,7 @@
                                                     <div class="col-md-6 col-md-6">
                                                         <div class="mb-3">
                                                             <label for="email" class="form-label">Email <span
-                                                                class="required"> *</span></label>
+                                                                    class="required"> *</span></label>
                                                             <input type="email"
                                                                 class="form-control @error('email') is-invalid @enderror"
                                                                 id="email" aria-describedby="emailHelp"
@@ -282,6 +293,14 @@
                 <!-- End Content Wrapper -->
 
             </div>
+            <!-- Copyright -->
+            <div class="text-center">
+                <p style="color: #FFCC05; font-size: 18px; margin-top: -20px;">Powered by<a class="text-primary"
+                        href="https://globalsync.com.au/" target="_blank"><img class="pt-5"
+                            src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" /></a>
+                </p>
+            </div>
+            <!-- Copyright -->
         </div>
 
     </section>

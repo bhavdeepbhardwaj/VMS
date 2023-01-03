@@ -18,6 +18,7 @@ class Visitor extends Model
         'purpose',
         'pic',
         'companyCode',
-        'address'
+        'address',
+        'companyLogo'
     ];
 }

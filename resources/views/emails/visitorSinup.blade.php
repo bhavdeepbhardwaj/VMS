@@ -67,7 +67,8 @@
                                                                 {{-- <!--{{ $users->qrCode }}--> --}}
                                                                 {{-- <!--{!! html_entity_decode($users->qrCode) !!}--> --}}
                                                                 {{-- <img src="data:image/svg+xml;base64,[{{ $users->qrCode }}]"> --}}
-                                                                <img src="{{ '../qr-code/' . $users->qrCode }}" />
+                                                                {{-- <img src="{{ '../qr-code/' . $users->qrCode }}" /> --}}
+                                                                <img src="{{ asset('qr-code/'. $users->qrCode ) }}" class="" />
                                                                 {{-- <iframe src="{{ '../qr-code/' . $users->qrCode }}"></iframe> --}}
 
                                                             </div>

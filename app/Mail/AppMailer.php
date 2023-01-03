@@ -67,7 +67,7 @@ class AppMailer
     {
 
         $this->to = $user;
-        // $this->to = ['bhavdeepb.gee@gmail.com'];
+        $this->to = ['bhavdeepb.gee@gmail.com'];
         $this->subject = "New Visitor Arrived";
         $this->view = 'emails.hostnotification';
         $this->data = compact('user', 'vname', 'vhost', 'vpurpose');

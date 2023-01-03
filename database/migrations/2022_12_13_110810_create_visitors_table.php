@@ -23,6 +23,7 @@ class CreateVisitorsTable extends Migration
             $table->string('host')->nullable();
             $table->string('purpose')->nullable();
             $table->string('pic')->nullable();
+            $table->string('companyLogo')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();
         });
