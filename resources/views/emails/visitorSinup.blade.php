@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>GLOBALSYNC</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
+
     <link href="https://visitor.globalsync.com.au/assets/css/mail.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 250px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 
 
 </head>
@@ -38,8 +60,29 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="colpad" style="padding: 30px 35px;">
+                                                        <div class="row" style="">
+                                                            <p>Here is you link and your Qr Code <a
+                                                                href="{{ route('user.visitor', $users->company_name) }}"
+                                                                {{-- href=""  --}}
+                                                                target="_blank"><i
+                                                                    class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+                                                        </p>
+                                                            <div class="column" style="">
+                                                                {!! $users->qrCode !!}
+                                                                {!! html_entity_decode($users->qrCode) !!}
+                                                                <img src="data:image/svg+xml;base64,[{{ $users->qrCode }}]">
+
+
+                                                            </div>
+                                                            <div class="column" style="">
+                                                                <div class=" " style="padding-top: 50px;">
+                                                                    <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         {{-- <p><strong>Dear ,</strong></p> --}}
                                                         <p><strong>Dear {{ $users->admin_name }},</strong></p>
+                                                        {!! $users->qrCode !!}
                                                         <p>Thank you for choosing our Visitor Management System to
                                                             manage visitors at the same time keeping your workplace safe
                                                             and secure.</p>
@@ -53,7 +96,12 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
+
                                         </table>
+
+
+
+
 
                                         <table class="row" style="background: #ffffff; color:#000000;">
                                             <tbody>

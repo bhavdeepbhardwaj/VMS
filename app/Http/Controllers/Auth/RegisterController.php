@@ -75,7 +75,7 @@ class RegisterController extends Controller
         $image = \QrCode::size(200)->errorCorrection('H')
                  ->generate('http://127.0.0.1:8000/resgvisitor/'.$data['company_name']);
         $output_file = '/qr-code/img-' . time() . '.png';
-        Storage::disk('local')->put($output_file, $image);
+        Storage::disk('public')->put($output_file, $image);
         // dd($output_file, $image);
         $data = User::create([
             'admin_name' => $data['admin_name'],
@@ -101,9 +101,9 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        // $mailer->sendVisitorRegistrationInformationLeads($get);
+        $mailer->sendVisitorRegistrationInformationLeads($get);
 
         // Visitor Registration qr code.
 
