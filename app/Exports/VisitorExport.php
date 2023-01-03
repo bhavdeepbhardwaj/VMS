@@ -102,7 +102,7 @@ class VisitorExport implements FromCollection
 
             $export_data =  Visitor::select("created_at", "visitorID", "name", "email", "phone", "host", "purpose", "pic", "address")->where('companyCode', Auth::user()->company_name)->get();
 
-            dd($export_data);
+            // dd($export_data);
 
             $data_array[] = array(
                 'DATE',
