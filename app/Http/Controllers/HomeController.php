@@ -179,7 +179,7 @@ class HomeController extends Controller
                 'purpose' => 'required',
                 'visitorID' => 'required',
                 'pic' => 'required',
-                'companyLogo' => 'required',
+                // 'companyLogo' => 'required',
             ]);
 
             if ($request->pic == null) {

@@ -106,9 +106,9 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        // $mailer->sendVisitorRegistrationInformationLeads($get);
+        $mailer->sendVisitorRegistrationInformationLeads($get);
 
         // Visitor Registration qr code.
 

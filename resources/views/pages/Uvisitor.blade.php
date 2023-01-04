@@ -295,9 +295,12 @@
             </div>
             <!-- Copyright -->
             <div class="text-center">
-                <p style="color: #FFCC05; font-size: 18px; margin-top: -20px;">Powered by<a class="text-primary"
-                        href="https://globalsync.com.au/" target="_blank"><img class="pt-5"
-                            src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" /></a>
+                <p style="color: #FFCC05; font-size: 18px; margin-top: -20px;">
+                    <a class="text-primary" href="https://globalsync.com.au/" target="_blank">
+                        {{-- <img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" /> --}}
+                        <img class="pt-5" src="{{ asset('assets/img/GSync_Footer.png') }}"
+                            alt="Globalsync" />
+                    </a>
                 </p>
             </div>
             <!-- Copyright -->

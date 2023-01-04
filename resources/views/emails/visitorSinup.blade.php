@@ -60,36 +60,47 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="colpad" style="padding: 30px 35px;">
-                                                        <div class="row" style="">
-                                                            <p>Here is you <a  href="{{ route('user.visitor', $users->company_name) }}"  target="_blank">link </a>and your Qr Code
-                                                        </p>
+                                                        <p><strong>Dear {{ $users->admin_name }},</strong></p>
+                                                        <p>Thank you for choosing our Visitor Management System to
+                                                            manage visitors at the same time keeping your workplace safe
+                                                            and secure.</p>
+                                                        <p>Here is you <a
+                                                            href="{{ route('user.visitor', $users->company_name) }}"
+                                                            target="_blank">link </a>and your Qr Code
+                                                    </p>
+                                                    <br/>
+
+                                                        <div class="" style="">
+                                                            <div style="">
+                                                                {{-- <img src="http://127.0.0.1:8000/qr-code/img-1672798621.svg" /> --}}
+                                                                <img src="{{ asset('qr-code/' . $users->qrCode) }}" />
+                                                            </div>
+                                                            {{-- <div style="padding: 40px; font-size: 30px; text-align: center;">
+                                                                <img src="{{ asset('assets/img/logo/logo.png') }}"
+                                                                class="w-75" />
+                                                            </div> --}}
+                                                        </div>
+                                                        {{-- <div class="row" style="">
+                                                            <p>Here is you <a
+                                                                href="{{ route('user.visitor', $users->company_name) }}"
+                                                                href="sdfsdf"
+                                                                    target="_blank">link </a>and your Qr Code
+                                                            </p>
                                                             <div class="column" style="">
-                                                                {{-- <!--{{ $users->qrCode }}--> --}}
-                                                                {{-- <!--{!! html_entity_decode($users->qrCode) !!}--> --}}
-                                                                {{-- <img src="data:image/svg+xml;base64,[{{ $users->qrCode }}]"> --}}
-                                                                {{-- <img src="{{ '../qr-code/' . $users->qrCode }}" /> --}}
-                                                                <img src="{{ asset('qr-code/'. $users->qrCode ) }}" class="" />
-                                                                {{-- <iframe src="{{ '../qr-code/' . $users->qrCode }}"></iframe> --}}
+                                                                <img src="{{ asset('qr-code/' . $users->qrCode) }}"
+                                                                    class="" />
 
                                                             </div>
                                                             <div class="column" style="">
                                                                 <div class=" " style="padding-top: 50px;">
-                                                                    <img src="{{ asset('assets/img/logo/logo.png') }}" class="w-75" />
+                                                                    <img src="{{ asset('assets/img/logo/logo.png') }}"
+                                                                        class="w-75" />
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        {{-- <p><strong>Dear ,</strong></p> --}}
-                                                        <p><strong>Dear {{ $users->admin_name }},</strong></p>
-                                                        {{-- {!! $users->qrCode !!} --}}
-                                                        <p>Thank you for choosing our Visitor Management System to
-                                                            manage visitors at the same time keeping your workplace safe
-                                                            and secure.</p>
-                                                        {{-- <p>You will shortly receive the detail from us to access the VMS
-                                                            for your organisation.</p>
-                                                        <p>Also, one of our executive will connect with you soon with
-                                                            all details.</p> --}}
-                                                        <p>For any query or information, Email us at <a
-                                                                href="mailto:sales@globalsync.com.au">sales@globalsync.com.au</a>
+                                                        </div> --}}
+                                                        <br/>
+                                                        <p style="padding-top: 20px;">For any query or information, Emailil us at <a
+                                                            href="mailto:sales@globalsync.com.au" >sales@globalsync.com.au</a>
                                                         </p>
                                                     </td>
                                                 </tr>
