@@ -46,7 +46,12 @@
                             <a href="/"><img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" /></a>
                         </div>
                         <div class="card-body pt-5">
-                            @include('component.alert')
+                            @if (session('status'))        
+    <div class="alert alert-success">
+        {{-- <i class="mdi mdi-check-circle-outline"></i> {{ session('status') }} --}}
+        <i class="mdi mdi-check-circle-outline"></i> {!! Session::get('status') !!}
+    </div>
+@endif
                         </div>
                     </div>
                 </div>

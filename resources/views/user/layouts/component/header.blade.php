@@ -6,11 +6,11 @@
         @if (Auth::user()->company_logo != '')
             @foreach (explode(',', Auth::user()->company_logo) as $ref)
                 <img class="ec-brand-name text-truncate hidden-md-up" src="{{ '/' . $ref }}"
-                    alt="{{ $ref }}" />
+                    alt="{{ $ref }}" style="width: 150px;" />
             @endforeach
         @else
             <img class="ec-brand-name text-truncate hidden-md-up" src="{{ asset('assets/img/logo/demo.png') }}"
-                alt="{{ Auth::user()->company_name }}" />
+                alt="{{ Auth::user()->company_name }}" style="width: 150px;" />
         @endif
 
         <!-- search form -->

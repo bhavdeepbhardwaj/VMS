@@ -21,12 +21,13 @@ class AppMailer
 
     public $mailer;
     // public $fromAddress = 'sales@globalsync.com.au';
-    public $fromAddress = 'bhavdeepb.gee@gmail.com';
+    // public $fromAddress = 'bhavdeepb.gee@gmail.com';
+    public $fromAddress = 'developer@globalsync.com.au';
     public $fromName = 'GLOBALSYNC';
     public $to;
     public $subject;
     public $view;
-    public $bcc = 'bhavdeepbhardwaj555@gmail.com';
+    // public $bcc = 'bhavdeepb.gee@gmail.com';
     // public $bcc = 'developer@globalsync.com.au';
     public $data = [];
 
@@ -54,7 +55,7 @@ class AppMailer
     {
 
         // $this->to = ['apandey@globalsync.com.au'];
-        $this->to = ['bhavdeepbhardwaj555@gmail.com'];
+        $this->to = ['bhavdeepb.gee@gmail.com'];
         $this->subject = "VMS New LEAD";
         $this->view = 'emails.leads';
         $this->data = compact('users', 'users');
@@ -77,15 +78,15 @@ class AppMailer
     public function deliver()
     {
         // BCC ADD
-        $this->mailer->send($this->view, $this->data, function ($message) {
-            $message->from($this->fromAddress, $this->fromName)
-                ->to($this->to)->bcc($this->bcc)->subject($this->subject);
-        });
-
         // $this->mailer->send($this->view, $this->data, function ($message) {
         //     $message->from($this->fromAddress, $this->fromName)
-        //         ->to($this->to)->subject($this->subject);
+        //         ->to($this->to)->bcc($this->bcc)->subject($this->subject);
         // });
+
+        $this->mailer->send($this->view, $this->data, function ($message) {
+            $message->from($this->fromAddress, $this->fromName)
+                ->to($this->to)->subject($this->subject);
+        });
     }
 
     // public function build()

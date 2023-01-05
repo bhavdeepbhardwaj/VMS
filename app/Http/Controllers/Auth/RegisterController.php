@@ -79,6 +79,17 @@ class RegisterController extends Controller
         $output_file = 'img-' . time() . '.svg';
         Storage::disk('qr-code')->put($output_file, $image);
 
+        // $path = public_path('qr-code/'.time().'.png');
+
+        // $image = \QrCode::format('png')
+        //                  ->merge(public_path('assets/img/logo/logo.png'), 0.5, true)
+        //                  ->size(500)
+        //                  ->errorCorrection('H')
+        //                  ->generate('http://127.0.0.1:8000/resgvisitor/' . $data['company_name'], $path);
+  
+        // return response($image)->header('Content-type','image/png');
+
+        // dd($path, $image);
         // dd($output_file, $image);
 
         $data = User::create([
@@ -106,9 +117,9 @@ class RegisterController extends Controller
 
         $get = \App\Models\User::latest()->first();
 
-        $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
+        // $mailer->sendVisitorRegistrationInformation(Auth::user(), $get);
 
-        $mailer->sendVisitorRegistrationInformationLeads($get);
+        // $mailer->sendVisitorRegistrationInformationLeads($get);
 
         // Visitor Registration qr code.
 
@@ -116,7 +127,7 @@ class RegisterController extends Controller
 
         // return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
         // return view('emails.visitorSinup',['user' => Auth::user(),'users' => $get]);
-        return redirect()->route('sign-up-thank')->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
+        return redirect()->route('sign-up-thank')->with("status", 'Thanks for Sign Up, <a href="/" class="" style="color:#000;text-decoration: underline;><strong>Click here To Log in</strong></a>');
     }
 
     public function showRegistrationForm()

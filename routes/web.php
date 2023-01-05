@@ -201,3 +201,5 @@ Route::get('/db-seed', function () {
 
     echo "DB Seed!<br>";
 });
+
+Route::get('phpinfo', fn () => phpinfo());

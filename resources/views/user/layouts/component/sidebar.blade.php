@@ -19,11 +19,11 @@
             <a href="/" title="{{ Auth::user()->company_name }}">
                 @if (Auth::user()->company_logo != '')
                     @foreach (explode(',', Auth::user()->company_logo) as $ref)
-                        <img class="ec-brand-name text-truncate" src="{{ '/' . $ref }}" alt="{{ $ref }}" />
+                        <img class="ec-brand-name text-truncate" src="{{ '/' . $ref }}" alt="{{ $ref }}" style="width: 150px;" />
                     @endforeach
                 @else
                     <img class="ec-brand-name text-truncate" src="{{ asset('assets/img/logo/demo.png ') }}"
-                        alt="{{ Auth::user()->company_name }}" />
+                        alt="{{ Auth::user()->company_name }}" style="width: 150px;" />
                 @endif
             </a>
         </div>

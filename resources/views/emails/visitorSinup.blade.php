@@ -72,32 +72,10 @@
 
                                                         <div class="" style="">
                                                             <div style="">
-                                                                {{-- <img src="http://127.0.0.1:8000/qr-code/img-1672798621.svg" /> --}}
                                                                 <img src="{{ asset('qr-code/' . $users->qrCode) }}" />
+                                                                {{-- <img src="{{ $message->embed(public_path('qr-code/' . $users->qrCode)) }}"> --}}
                                                             </div>
-                                                            {{-- <div style="padding: 40px; font-size: 30px; text-align: center;">
-                                                                <img src="{{ asset('assets/img/logo/logo.png') }}"
-                                                                class="w-75" />
-                                                            </div> --}}
                                                         </div>
-                                                        {{-- <div class="row" style="">
-                                                            <p>Here is you <a
-                                                                href="{{ route('user.visitor', $users->company_name) }}"
-                                                                href="sdfsdf"
-                                                                    target="_blank">link </a>and your Qr Code
-                                                            </p>
-                                                            <div class="column" style="">
-                                                                <img src="{{ asset('qr-code/' . $users->qrCode) }}"
-                                                                    class="" />
-
-                                                            </div>
-                                                            <div class="column" style="">
-                                                                <div class=" " style="padding-top: 50px;">
-                                                                    <img src="{{ asset('assets/img/logo/logo.png') }}"
-                                                                        class="w-75" />
-                                                                </div>
-                                                            </div>
-                                                        </div> --}}
                                                         <br/>
                                                         <p style="padding-top: 20px;">For any query or information, Emailil us at <a
                                                             href="mailto:sales@globalsync.com.au" >sales@globalsync.com.au</a>
