@@ -22,7 +22,12 @@
     </div>
 @endif
 
-
+@if (session('status'))
+    <div class="alert alert-success">
+        <i class="mdi mdi-check-circle-outline"></i> {{ session('status') }}
+        {{-- <i class="mdi mdi-check-circle-outline"></i> {!! Session::get('status') !!} --}}
+    </div>
+@endif
 
 @if ($errors->any())
     <div class="alert alert-danger ">

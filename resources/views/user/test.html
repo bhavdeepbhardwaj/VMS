@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg {
+            background-color: #fdcd0a;
+            -webkit-background-size: cover;
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 100px;
+            width: 200px;
+            border-radius: 150px 150px 0 0;
+            background-color: green;
+        }
+
+        .bg::after {
+            content: "";
+            width: 200%;
+            height: 0;
+            padding-top: 70%;
+            border-radius: 144%;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-42%);
+        }
+
+        .bgf {
+            background-color: #2b2a29;
+            background-size: cover;
+            -webkit-background-size: cover;
+            width: 100%;
+            height: 270px;
+            overflow: hidden;
+            position: relative;
+            /*below show how it works*/
+
+        }
+
+        .bgf::after {
+            content: "";
+            width: 125%;
+            /* padding-top: 80px; */
+            margin-left: -100px;
+            padding-bottom: 256px;
+            height: 0;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: -130px;
+            transform: rotate(-3deg);
+            /* left: 0px; */
+            /* right: 637px; */
+            /* /* transform: translateY(-92%); */
+        }
+
+        #sometext {
+            position: absolute;
+            z-index: 1;
+            margin-top: -130px;
+            font-size: 26px;
+            text-align: center;
+            display: block;
+        }
+
+
+
+        .qr-image {
+            border: 5px solid #000;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #fff;
+            width: 250px;
+            box-shadow: 0 0 20px 2px #f2da82;
+        }
+
+        .footer-qr-code {
+            position: absolute;
+            display: block;
+            float: right;
+            margin-top: -80px;
+            margin-left: 550px;
+        }
+
+        .logo-image {
+            float: right;
+            margin-left: 350px;
+        }
+
+        @media (max-width:641px) {
+
+            /* smartphones, iPhone, portrait 480x320 phones */
+            .qr-code {
+                /* margin-left: 42px; */
+            }
+
+            .bgf::after {
+                margin-left: -60px;
+            }
+
+            .logo-image {
+                display: none;
+            }
+
+            /* .comp-logo {
+                display: none;
+            } */
+        }
+
+        @media (max-width:1025px) {
+
+            /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+            .qr-code {
+                /* margin-left: 150px; */
+            }
+        }
+
+        @media (min-width:1025px) {
+
+            /* big landscape tablets, laptops, and desktops */
+            .qr-code {
+                /* margin-left: 180px; */
+            }
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-box {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            /* border: 3px solid red; */
+        }
+
+        .box-1 {
+            background-color: #fdcd0a;
+            height: 50vh;
+
+        }
+
+        .box-2 {
+            background-color: #2b2a29;
+            height: 50vh;
+
+        }
+
+        .half-circle {
+            position: absolute;
+            left: 0%;
+            top: 60%;
+            height: 40vh;
+            width: 100%;
+            border-radius: 100%;
+            background-color: #FFF;
+            overflow: hidden;
+        }
+
+        .qr-code {
+            position: absolute;
+            top: 74%;
+            left: 25%;
+            border: 5px solid #000;
+            padding: 5px;
+            border-radius: 2px;
+            background-color: #fff;
+            box-shadow: 0 0 20px 2px #f2da82;
+        }
+
+        .comp-logo {
+            position: absolute;
+            top: 74%;
+            left: 55%;
+        }
+
+        .sometext {
+            position: absolute;
+            top: 30%;
+            left: 18%;
+        }
+
+        .sometext>p {
+            font-size: 35px;
+        }
+
+        .footer-logo {
+            position: fixed;
+            bottom: 25px;
+            right: 40px;
+        }
+
+        @media (max-width:641px) {
+            .comp-logo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <section>
+        <div id="converttoPDF">
+            <div class="div"></div>
+            <div class="bg"></div>
+            <div class="bgf"></div>
+            <div class="logo-image">
+                <img src="http://127.0.0.1:8000/05-01-2023-Visitor/GEE-Christmas-Logo.png" class="w-15" />
+            </div>
+            <div class="qr-code" style="">
+
+                <p id="sometext">Here is you link and your Qr Code <a href="sdf" target="_blank" style="color: #fff"><i
+                            class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+                </p>
+                <img src="http://127.0.0.1:8000/qr-code/img-1672903325.svg" class="w-15" />
+            </div>
+            <div style="float: right;">
+                <img src="http://127.0.0.1:8000/assets/img/GSync_Footer_qr-_code.png" class="footer-qr-code" />
+            </div>
+        </div>
+    </section> -->
+    <div class="main-box">
+        <div class="box-1"></div>
+        <div class="half-circle"></div>
+        <div class="box-2"></div>
+        <div class="qr-code">
+            <img src="http://127.0.0.1:8000/qr-code/img-1672903325.svg" class="w-15" />
+        </div>
+        <div class="comp-logo">
+            <img src="http://127.0.0.1:8000/05-01-2023-Visitor/GEE-Christmas-Logo.png" class="w-15" />
+        </div>
+        <div class="sometext">
+            <p id="">Here is you link and your Qr Code <a href="sdf" target="_blank" style="color: #fff"><i
+                        class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+            </p>
+        </div>
+        <div class="footer-logo">
+            <img src="http://127.0.0.1:8000/assets/img/GSync_Footer_qr-_code.png" class="" />
+        </div>
+    </div>
+</body>
+
+</html>
