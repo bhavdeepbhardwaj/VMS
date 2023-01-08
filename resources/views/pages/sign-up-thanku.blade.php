@@ -49,7 +49,7 @@
                         <div class="card-body pt-5">
                             @if (session('status'))
                                 <div class="alert alert-success">
-                                    <i class="mdi mdi-check-circle-outline"></i> {{ session('status') }}
+                                    {{-- <i class="mdi mdi-check-circle-outline"></i> {{ session('status') }} --}}
                                     <i class="mdi mdi-check-circle-outline"></i> {!! Session::get('status') !!}
                                 </div>
                             @endif

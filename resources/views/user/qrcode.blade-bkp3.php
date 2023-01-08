@@ -31,25 +31,21 @@
         }
 
         .grid-container .item {
-            width: 40%;
-            margin-left: 30px;
-            margin-right: 30px;
+            width: 45%;
+            margin: 30px;
         }
 
         .grid-container .item .box {
             width: 100%;
             height: 100%;
             border: 4px solid #000;
-            background-color: #FFF;
-            /* background: transparent; */
             box-shadow: 0 0 20px 2px #f2da82;
         }
-
         /* .grid-container .item  {
-                width: 100%;
-                height: 400px;
-                border: 4px solid #000;
-            } */
+            width: 100%;
+            height: 400px;
+            border: 4px solid #000;
+        } */
 
         .grid-container .item .box img {
             width: 100%;
@@ -61,14 +57,6 @@
             text-align: center;
             margin: 0px 0 50px;
             /* min-height: 80px; */
-            color: #000;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 0px 0 80px;
-            /* min-height: 80px; */
-            color: #000;
         }
 
         .fot {
@@ -114,30 +102,52 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-12">
                     <div class="card card-default">
                         <div class="card-body" id="converttoPDF">
+                            {{-- <div class="main-box">
+                                <div class="box-1"></div>
+                                <div class="half-circle"></div>
+                                <div class="box-2"></div>
+                                <div class="qr-code">
+                                    @if (Auth::user()->qrCode != null)
+                                        <img src="{{ '../qr-code/' . Auth::user()->qrCode }}" class="w-15" />
+                                    @else
+                                        <img src="{{ asset('qr-code/demo-qrCode.png') }}" class="w-15" />
+                                    @endif
+
+                                </div>
+                                <div class="comp-logo">
+                                    <img src="http://127.0.0.1:8000/05-01-2023-Visitor/GEE-Christmas-Logo.png"
+                                        class="w-15" />
+                                </div>
+                                <div class="sometext">
+                                    <p id="">Here is you link and your Qr Code <a
+                                            href="{{ route('user.visitor', Auth::user()->company_name) }}" target="_blank"
+                                            style="color: #fff"><i
+                                                class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+                                    </p>
+                                </div>
+                                <div class="footer-logo">
+                                    <img src="http://127.0.0.1:8000/assets/img/GSync_Footer_qr-_code.png" class="" />
+                                </div>
+                            </div> --}}
                             <div class="main-wrapper">
                                 <div class="page-content">
                                     <div class="grid-container">
                                         <div class="item">
-                                            <h1 class="">{{ Auth::user()->company_name }}</h1>
+                                            <h2 class="">{{ Auth::user()->company_name }}</h2>
                                             {{-- <h4>{{ Auth::user()->company_name }}</h4> --}}
-                                            <div class="box" style="border: none; box-shadow: none;">
+                                            <div class="box" style="border:none;">
                                                 @if (Auth::user()->company_logo != null)
-                                                    <img src="/{{ Auth::user()->company_logo }}" class=""
-                                                        style="padding-top: ;" />
+                                                    <img src="/{{ Auth::user()->company_logo }}" class="" style="padding-top: 100px;" />
                                                 @else
-                                                    <img src="{{ asset('assets/img/demo-logo.png') }}" class=""
-                                                        style="padding-top: " />
+                                                    <img src="{{ asset('assets/img/demo-logo.png') }}" class="" style="padding-top: " />
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <h2>Scan Below to Check-in <a
-                                                    href="{{ route('user.visitor', Auth::user()->company_name) }}"
-                                                    target="_blank" style="color: #fff"><i
-                                                        class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a></h2>
+                                            <h2>Scan Below to Check-in</h2>
                                             <div class="box" style="padding: 5px;">
                                                 @if (Auth::user()->qrCode != null)
                                                     <img src="{{ '../qr-code/' . Auth::user()->qrCode }}" class="" />
@@ -149,12 +159,35 @@
                                     </div>
                                 </div>
                                 <div class="fot">
-                                    <img src="{{ asset('assets/img/GSync_Footer_qr-_code.png') }}" alt="">
+                                    <img src="http://127.0.0.1:8000/assets/img/GSync_Footer_qr-_code.png" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                {{-- <div class=" col-lg-12">
+                    <div class="main-box">
+                        <div class="box-1"></div>
+                        <div class="half-circle"></div>
+                        <div class="box-2"></div>
+                        <div class="qr-code">
+                            <img src="http://127.0.0.1:8000/qr-code/img-1672903325.svg" class="w-15" />
+                        </div>
+                        <div class="comp-logo">
+                            <img src="http://127.0.0.1:8000/05-01-2023-Visitor/GEE-Christmas-Logo.png" class="w-15" />
+                        </div>
+                        <div class="sometext">
+                            <p id="">Here is you link and your Qr Code <a href="sdf" target="_blank"
+                                    style="color: #fff"><i class="mdi mdi-arrow-top-right-bold-outline mdi-36px"></i></a>
+                            </p>
+                        </div>
+                        <div class="footer-logo">
+                            <img src="http://127.0.0.1:8000/assets/img/GSync_Footer_qr-_code.png" class="" />
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
         <!-- End Content -->
@@ -178,7 +211,7 @@
             var element = document.getElementById('converttoPDF');
             html2pdf().set({
                 html2canvas: {
-                    scale: 4,
+                    scale: 8,
                     scrollY: 0
                 }
             }).from(element).save(doc_name);

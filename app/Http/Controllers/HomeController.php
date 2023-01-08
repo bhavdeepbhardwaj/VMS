@@ -142,7 +142,7 @@ class HomeController extends Controller
             if ($getdata > 0) {
                 $incid = $getdata + 1;
                 $num_padded = sprintf("%03d", $incid);
-                $visitorID =  preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
+                $visitorID = preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
                 // dd($visitorID);
 
             } else {
@@ -172,7 +172,7 @@ class HomeController extends Controller
         try {
             $this->validate($request, [
                 'name' => 'required',
-                'email'                => 'required',
+                'email' => 'required',
                 'phone' => 'required|min:10|max:14',
                 // 'host'                 => 'required',
                 'address' => 'required',
@@ -225,9 +225,9 @@ class HomeController extends Controller
                 $host = $request->host;
             }
             // $mailer->sendHostNotification($get, $request->name, $host, $request->purpose);
-
+            $checkin = date('jS \of F Y h:i A', strtotime($complRegis->created_at));
             if ($result) {
-                return redirect()->route('user.sumbit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
+                return redirect()->route('user.sumbit')->with("success", "Thanks, you now you are check in $checkin ");
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong...!");
@@ -247,7 +247,6 @@ class HomeController extends Controller
         }
         return view('pages.Usubmit', ['getdata' => $getdata]);
     }
-
 
     // Visitor Registration
 

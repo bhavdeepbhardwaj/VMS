@@ -201,8 +201,15 @@ class UserController extends Controller
 
     public function QRCode()
     {
-        $guest = Visitor::orderBy('created_at', 'DESC')->get();
+        // dd($request->all());
+        try {
+            $guest = Visitor::orderBy('created_at', 'DESC')->get();
+
+        } catch (ModelNotFoundException $exception) {
+        return redirect()->back()->with("error", "Something is wrong !");
+        }
         return view('user.qrcode', ['guest' => $guest]);
+
     }
 
     public function thankYou()

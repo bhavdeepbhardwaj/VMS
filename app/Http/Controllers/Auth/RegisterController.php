@@ -86,7 +86,7 @@ class RegisterController extends Controller
         //                  ->size(500)
         //                  ->errorCorrection('H')
         //                  ->generate('http://127.0.0.1:8000/resgvisitor/' . $data['company_name'], $path);
-  
+
         // return response($image)->header('Content-type','image/png');
 
         // dd($path, $image);
@@ -127,7 +127,9 @@ class RegisterController extends Controller
 
         // return redirect()->back()->with("status", "Your request has been sent successfully to our team. One of oue executive will connect soon. ");
         // return view('emails.visitorSinup',['user' => Auth::user(),'users' => $get]);
-        return redirect()->route('sign-up-thank')->with("status", 'Thanks for Sign Up, <a href="/" class="" style="color:#000;text-decoration: underline;><strong>Click here To Log in</strong></a>');
+
+        $urlanchor = '<a href="/" style="color:#000;text-decoration: underline;"><strong>Click here To Log in</strong></a>';
+        return redirect()->route('sign-up-thank')->with("status", "Thanks for Sign Up, $urlanchor");
     }
 
     public function showRegistrationForm()
