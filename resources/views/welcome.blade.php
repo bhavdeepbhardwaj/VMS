@@ -67,6 +67,14 @@
                 display: none !important
             }
         }
+
+        .vid {
+            border: 5px solid #000;
+            padding: 5px;
+            box-shadow: 0 0 20px 2px #ffcc05;
+            width: -webkit-fill-available;
+            border-radius: 3px;
+        }
     </style>
 @endsection
 
@@ -78,9 +86,9 @@
         <div class="row ">
             <div class="col-lg-6 col-xl-6 login-panel my-lg-9 pt-50">
                 {{-- <img src="/assets/img/bg_welcome_background.jpg"> --}}
-                <h1 class="pl-3 pb-4 text-capitalize text-center pr-4">customer support</h1>
+                <h1 class="pl-3 pb-4 text-capitalize text-center pr-4">Visitor Management System</h1>
 
-                <h3 class="pl-3 text-capitalize" style="padding-top: 21px;">Call Support</h3>
+                <h3 class="pl-3 text-capitalize" style="">Call Support</h3>
                 <div class="pl-3 font-size-40"><i class="mdi mdi-cellphone-basic mdi-18px"></i> <a href="tel:+911204215944"
                         class=" text-white">+91 1204215944</a>&nbsp;&nbsp;<strong
                         style="border-left:2px solid #fff;"></strong>&nbsp;&nbsp;Mon - Sat : 10:00
@@ -92,11 +100,15 @@
                         style="border-left:2px solid #fff;"></strong>&nbsp;&nbsp;Dedicated
                     Support Team
                 </div>
-                {{-- <h3 class="pl-3 pt-4 text-capitalize">Online Portal</h3>
-                <div class="pl-3 font-size-40 pr-3" style="text-align: justify!important;">Create your account and register
-                    your product. Use the portal to generate a
-                    ticket against any of your grievances <i
-                        class="mdi mdi-arrow-right-bold-outline mdi-18px hidden-sm-down"></i></div> --}}
+                @if (!Auth::check())
+                    <div href="/" title="GLOBALSYNC" class="pt-3 pl-3">
+                        <iframe width="560" height="300" src="https://www.youtube-nocookie.com/embed/eyzjasV1GlU"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen class="vid"></iframe>
+                    </div>
+                @else
+                @endif
 
             </div>
 
@@ -127,8 +139,8 @@
                                 <a href="{{ route('profile') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
                                     Dashboard</a>
                             @else
-                            <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
-                                Dashboard</a>
+                                <a href="{{ route('user.list') }}" class="btn btn-primary">{{ Auth::user()->company_name }}
+                                    Dashboard</a>
                             @endif
                             {{-- <a href="{{ route('thankYou') }}" class="btn btn-primary">{{ Auth::user()->company_name }} Dashboard</a> --}}
                         @elseif (Auth::user()->role == 0)
