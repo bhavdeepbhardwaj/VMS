@@ -71,7 +71,7 @@ class RegisterController extends Controller
      */
     public function create(array $data)
     {
-        $image = \QrCode::size(200)->errorCorrection('H')
+        $image = \QrCode::size(350)->errorCorrection('H')
             ->generate('http://127.0.0.1:8000/resgvisitor/' . $data['company_name']);
 
         //  dd($image);

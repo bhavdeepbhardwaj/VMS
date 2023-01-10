@@ -35,6 +35,14 @@
                     <hr>
                 </li>
 
+                <!-- Client -->
+                <li>
+                    <a class="sidenav-item-link" href="{{ route('user') }}">
+                        <i class="mdi mdi-account-group"></i>
+                        <span class="nav-text">All Client</span>
+                    </a>
+                </li>
+
                 <!-- Visitor Registration -->
                 <li class="">
                     <a class="sidenav-item-link" href="{{ route('admin.visitor') }}">
@@ -49,14 +57,6 @@
                     <a class="sidenav-item-link" href="{{ route('admin.sellerSalesReport') }}">
                         <i class="mdi mdi-cart"></i>
                         <span class="nav-text">Seller Sales Report</span>
-                    </a>
-                </li> --}}
-
-                <!-- Users -->
-                {{-- <li>
-                    <a class="sidenav-item-link" href="{{ route('user') }}">
-                        <i class="mdi mdi-account-group"></i>
-                        <span class="nav-text">Customers</span>
                     </a>
                 </li> --}}
 

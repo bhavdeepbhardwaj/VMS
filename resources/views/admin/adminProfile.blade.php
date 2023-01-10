@@ -30,7 +30,8 @@
                                             <div class="avatar-preview ec-preview">
                                                 <div class="imagePreview ec-div-preview">
                                                     @if ($users != '')
-                                                        <img class="ec-image-preview" src="{{ '/' . $users->pic }}"
+                                                        <img class="ec-image-preview"
+                                                            src="{{ '/' . Auth::user()->company_logo }}"
                                                             alt="{{ $users->pic }}"
                                                             style="width: 50%; padding-bottom: 20px;">
                                                         <br />
@@ -43,17 +44,17 @@
                                             </div>
                                             <div class="avatar-edit">
                                                 <input type='file' hidden id="imageUpload"
-                                                    class="ec-image-upload @error('pic') is-invalid @enderror"
-                                                    name="pic[]" />
-                                                @error('pic')
+                                                    class="ec-image-upload @error('company_logo') is-invalid @enderror"
+                                                    name="company_logo[]" />
+                                                @error('company_logo')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                                 <label for="imageUpload">
-                                                    {{-- {{ dd(Auth::user()->pic)}} --}}
+                                                    {{-- {{ dd(Auth::user()->company_logo)}} --}}
                                                     <img src="/assets/img/icons/edit.svg" class="svg_img header_svg"
-                                                        alt="{{ $users->pic }}">
+                                                        alt="{{ $users->company_logo }}">
                                                 </label>
                                             </div>
                                         </div>
@@ -105,17 +106,18 @@
                                             <input type="hidden" class="form-select1" value="{{ Auth::user()->id }}"
                                                 name="user_id">
                                             <div class="col-md-6">
-                                                <label class="labels">First Name</label>
+                                                <label class="labels">Admin Name</label>
                                                 <input type="text" class="form-select1" disabled placeholder="First name"
-                                                    value="{{ Auth::user()->name }}" name="name">
+                                                    value="{{ Auth::user()->admin_name }}" name="admin_name">
                                             </div>
 
-                                            <div class="col-md-6"><label class="labels">Last
+                                            <div class="col-md-6">
+                                                <label class="labels">Company
                                                     Name</label><input type="text"
-                                                    class="form-select1 @error('last_name') is-invalid @enderror"
-                                                    value="{{ $users->last_name }}" placeholder="Last Name"
-                                                    name="last_name">
-                                                @error('last_name')
+                                                    class="form-select1 @error('company_name') is-invalid @enderror"
+                                                    value="{{ $users->company_name }}" placeholder="Company Name"
+                                                    name="company_name">
+                                                @error('company_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -126,9 +128,10 @@
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label class="labels">Mobile Number</label>
-                                                <input type="text" class="form-select1 @error('phone') is-invalid @enderror"
-                                                    placeholder="Enter phone number" value="{{ $users->phone }}"
-                                                    name="phone">
+                                                <input type="text"
+                                                    class="form-select1 @error('phone') is-invalid @enderror"
+                                                    placeholder="Enter phone number" value="{{ $users->company_phone }}"
+                                                    name="company_phone">
                                                 @error('phone')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -138,8 +141,9 @@
 
                                             <div class="col-md-6">
                                                 <label class="labels">Email ID</label>
-                                                <input type="text" disabled class="form-select1" placeholder="Enter email"
-                                                    value="{{ Auth::user()->email }}" name="email">
+                                                <input type="text" disabled class="form-select1"
+                                                    placeholder="Enter email" value="{{ Auth::user()->email }}"
+                                                    name="email">
                                             </div>
 
                                             <div class="col-md-12">
@@ -156,14 +160,6 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label class="labels">Gender</label>
-                                                <select name="gender" id="gender" class="form-select">
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-6">
                                                 <label class="labels">Postcode</label>
                                                 <input type="text"
                                                     class="form-select1 @error('postcode') is-invalid @enderror"
@@ -175,9 +171,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>
 
-                                        <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label class="labels">Country</label>
                                                 <input type="text"
@@ -189,9 +183,14 @@
                                                     </span>
                                                 @enderror
                                             </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+
                                             <div class="col-md-6">
                                                 <label class="labels">State/Region</label>
-                                                <input type="text" class="form-select1 @error('state') is-invalid @enderror"
+                                                <input type="text"
+                                                    class="form-select1 @error('state') is-invalid @enderror"
                                                     value="{{ $users->state }}" placeholder="State" name="state">
                                                 @error('state')
                                                     <span class="invalid-feedback" role="alert">
@@ -209,14 +208,14 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                                <div class="tab-pane fade" id="settings" role="tabpanel"
+                                    aria-labelledby="settings-tab">
                                     <div class="tab-pane-content mt-5">
                                         @include('component.alert')
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4 class="text-right">Password Settings</h4>
                                         </div>
-                                        <form class="" method="POST"
-                                            action="{{ route('changePassword') }}">
+                                        <form class="" method="POST" action="{{ route('changePassword') }}">
                                             {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="form-group col-md-8">
@@ -224,7 +223,8 @@
                                                     <div class="input-group" id="show_hide_password">
                                                         <input
                                                             class="form-select1 @error('current_password') is-invalid @enderror"
-                                                            type="password" name="current_password" id="current_password">
+                                                            type="password" name="current_password"
+                                                            id="current_password">
                                                         @error('current_password')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>

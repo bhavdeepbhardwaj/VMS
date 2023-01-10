@@ -9,6 +9,7 @@ use App\Mail\AppMailer;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Guest;
+use App\Models\Visitor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,7 @@ class AdminController extends Controller
     {
         try {
             $users = DB::table('users')->count();
-            $visitor = DB::table('guests')->count();
+            $visitor = DB::table('visitors')->count();
             $guest = Guest::orderBy('created_at', 'DESC')->get();
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -49,7 +50,8 @@ class AdminController extends Controller
         try {
             // $getdata = Guest::where('visitorID', $request->visitorID)->get()->first();
             // dd($getdata);
-            $guest = Guest::orderBy('created_at', 'DESC')->get();
+            $guest = Visitor::orderBy('created_at', 'DESC')->get();
+            // dd($guest);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -73,7 +75,7 @@ class AdminController extends Controller
     public function popUpVisitorRegistration(Request $request)
     {
         // dd($request->all());
-        $guests = Guest::where('visitorID', $request->visitorID)->first();
+        $guests = Visitor::where('visitorID', $request->visitorID)->first();
         // dd($guests);
         return Response::json($guests);
     }
@@ -157,20 +159,20 @@ class AdminController extends Controller
             $imageNameArr = [];
 
             $this->validate($request, [
-                'last_name'        => 'required',
-                'phone'            => 'required',
+                // 'last_name'        => 'required',
+                'company_phone'    => 'required',
+                'company_name'     => 'required',
                 'address'          => 'required',
-                'gender'           => 'required',
                 'postcode'         => 'required',
                 'country'          => 'required',
                 'state'            => 'required',
-                // 'pic'              => 'required',
+                // 'company_logo'              => 'required',
             ]);
 
-            if ($request->hasFile('pic')) {
+            if ($request->hasFile('company_logo')) {
                 $picture = array();
                 $imageNameArr = [];
-                foreach ($request->pic as $file) {
+                foreach ($request->company_logo as $file) {
                     // you can also use the original name
                     $image = $file->getClientOriginalName();
                     $imageNameArr[] = $image;
@@ -184,13 +186,12 @@ class AdminController extends Controller
 
             User::where('id', $request->user_id)->update([
                 'last_name'     => $request->last_name,
-                "phone"         => $request->phone,
+                "company_phone" => $request->company_phone,
                 "address"       => $request->address,
-                "gender"        => $request->gender,
                 "postcode"      => $request->postcode,
                 "country"       => $request->country,
                 "state"         => $request->state,
-                "pic"           => $picture
+                "company_logo"  => $picture
             ]);
 
             return redirect()->back()->with("success", "Admin detail is updated !");

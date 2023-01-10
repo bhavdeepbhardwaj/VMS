@@ -27,7 +27,7 @@
                     <form action="{{ route('datefiltervisitor') }}" method="GET">
                         {{ csrf_field() }}
                         <div class="input-group mb-3">
-                            <input type="date" required class="form-control @error('start_date') is-invalid @enderror"
+                            {{-- <input type="date" required class="form-control @error('start_date') is-invalid @enderror"
                                 name="start_date">
                             @error('start_date')
                                 <span class="alert alert-danger" id="start_dateHelp" role="alert">
@@ -43,9 +43,9 @@
                                 </span>
                             @enderror
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp; --}}
 
-                            <a href="{{ route('exportAllvisitorRegistration') }}" class="btn btn-primary">Export File</a>
+                            {{-- <a href="{{ route('exportAllvisitorRegistration') }}" class="btn btn-primary">Export File</a> --}}
                             {{--  <button onclick="ExportToExcel('xlsx')" class="btn btn-primary">Export File</button>  --}}
                         </div>
                     </form>
@@ -140,9 +140,16 @@
 
                         <div class="row">
                             <div class=" text-center">
-                                <a href="/" title="Globalsync">
-                                    <img class="pt-5" src="{{ asset('assets/img/logo/logo.png') }}" alt="Globalsync" />
-                                </a>
+                                @if ($guest != null)
+                                    <a href="/" title="{{ Auth::user()->company_name }}">
+                                        <img class="pt-5 w-25" id="logo" src=""
+                                            alt="{{ Auth::user()->company_name }}" />
+                                    </a>
+                                    <br />
+                                @else
+                                    <img class="pt-5 w-25" src="{{ asset('assets/img/logo/logo.png') }}"
+                                        alt="{{ Auth::user()->company_name }}">
+                                @endif
                             </div>
 
                             <div class="col-lg-4 col-xl-3">
@@ -153,18 +160,16 @@
                                                 <div class="avatar-preview ec-preview">
                                                     <div class="imagePreview ec-div-preview">
                                                         @if ($guest != null)
-                                                            <img class="ec-image-preview" src="../Visitor/" id="pic"
-                                                                alt="GLOBALSYNC"
-                                                                style="width: 100%; padding-bottom: 20px;" />
+                                                            <img class="ec-image-preview" id="pic" src=""
+                                                                alt="{{ Auth::user()->company_name }}"
+                                                                style="width: 100%; padding-bottom: 20px;">
                                                             <br />
                                                         @else
                                                             <img class="ec-image-preview"
                                                                 src="{{ asset('assets/img/user/user.png') }}"
-                                                                alt="" style="width: 50%; padding-bottom: 20px;">
+                                                                alt="{{ Auth::user()->company_name }}"
+                                                                style="width: 50%; padding-bottom: 20px;">
                                                         @endif
-                                                        {{--  <img class="ec-image-preview"
-                                                                src="{{ asset('assets/img/user/user.png') }}"
-                                                                alt="GLOBALSYNC" style="width: 100%; padding-bottom: 20px;"/>  --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -298,12 +303,14 @@
                 type: "GET",
                 dataType: 'json',
                 // data:{('visitorID' => visitorID)},
-                url: '../Admin/popUpVisitorRegistration/',
+                url: '/Admin/popUpVisitorRegistration/',
                 data: {
                     'visitorID': visitorID
                 },
                 global: false,
                 async: true,
+
+
 
                 success: function(result) {
                     $('#modal-contact').modal('show');
@@ -313,19 +320,17 @@
                     $('#phone').text(result.phone);
                     $('#host').text(result.host);
                     $('#purpose').text(result.purpose);
-                    // $('#pic').attr('src', (result.pic));
-                    $('#pic').attr('src', ('../Visitor/'+result.pic));
+                    // $('#pic').attr('src', result.pic);
+                    $('#pic').attr('src', ('../Visitor/' + result.pic));
                     $('#address').text(result.address);
-                    // alert("src = " + result.pic);
-
-                    //var obj = jQuery.parseJSON(result);
+                    $('#logo').attr('src', ('../' + result.companyLogo));
                     var obj = JSON.parse(JSON.stringify(result));
                     $('#visitorID').val(obj.visitorID);
 
                 },
 
             });
-            // alert("visitorID = " + visitorID);
+
         }
     </script>
     <script>

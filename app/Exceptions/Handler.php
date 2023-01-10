@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
