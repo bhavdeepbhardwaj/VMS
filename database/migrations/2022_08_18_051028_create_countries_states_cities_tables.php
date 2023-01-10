@@ -16,6 +16,7 @@ class CreateCountriesStatesCitiesTables extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
 
@@ -23,6 +24,7 @@ class CreateCountriesStatesCitiesTables extends Migration
             $table->id();
             $table->string('name');
             $table->integer('country_id');
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
 
@@ -30,6 +32,7 @@ class CreateCountriesStatesCitiesTables extends Migration
             $table->id();
             $table->string('name');
             $table->integer('state_id');
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }

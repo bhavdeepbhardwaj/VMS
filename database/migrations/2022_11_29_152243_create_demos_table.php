@@ -23,6 +23,7 @@ class CreateDemosTable extends Migration
             $table->string('purpose');
             $table->string('pic');
             $table->text('address');
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }

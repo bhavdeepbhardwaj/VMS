@@ -10,14 +10,11 @@ use App\Models\Visitor;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     // Privacy Policy
 
     public function privacyPolicy()
@@ -31,19 +28,16 @@ class HomeController extends Controller
     {
         try {
             $getdata = \App\Models\Demo::latest()->first();
-            // dd($checkdata);
 
             if (isset($getdata) && $getdata) {
                 $incid = $getdata->id + 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = "DEMO ID-" . $num_padded;
-                // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = "DEMO ID-" . $num_padded;
-                // dd($visitorID);
             }
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -55,10 +49,7 @@ class HomeController extends Controller
 
     public function demovisitorSave(Request $request)
     {
-        // dd($request->all());
         try {
-            // $picture = "";
-            // $imageNameArr = [];
             $this->validate($request, [
                 'name' => 'required',
                 // 'email'                => 'required',
@@ -112,9 +103,7 @@ class HomeController extends Controller
     public function demoSubmitForm(Request $request)
     {
         try {
-            // $getdata = Visitor::where('phone', $request->phone)->get();
             $getdata = Demo::latest()->first();
-            // dd($getdata);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -125,31 +114,23 @@ class HomeController extends Controller
 
     public function uservisitor($data)
     {
-        // dd($data);
         $checkCompany = \App\Models\User::where('company_name', $data)->get();
         $checkLogo = \App\Models\User::where('company_name', $data)->pluck('company_logo')->first();
-        // dd($checkLogo);
         $companyArr = \App\Models\Purpose::where('companyName', $data)->pluck('name')->first();
         $explodecompany = explode(',', $companyArr);
-        // dd($explodecompany);
-        // dd($companyArr);
-        // dd(count($checkCompany));
 
         try {
             $getdata = \App\Models\Visitor::where('companyCode', $data)->count();
 
-            // if (isset($getdata) && $getdata) {
             if ($getdata > 0) {
                 $incid = $getdata + 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
-                // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = preg_replace('/\s+/', '', strtoupper($data)) . "ID-" . $num_padded;
-                // dd($visitorID);
             }
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -159,7 +140,6 @@ class HomeController extends Controller
 
             return view('pages.Uvisitor', ['visitorID' => $visitorID, 'data' => $data, 'explodecompany' => $explodecompany, 'checkLogo' => $checkLogo]);
         } else {
-            // dd('Back');
             return view('errors.419');
         }
     }
@@ -168,7 +148,6 @@ class HomeController extends Controller
 
     public function UvisitorSave(Request $request, AppMailer $mailer)
     {
-        // dd($request->all());
         try {
             $this->validate($request, [
                 'name' => 'required',
@@ -215,9 +194,7 @@ class HomeController extends Controller
 
             // Host Notification
             $get = \App\Models\User::where('company_name', $request->companyCode)->pluck('email')->first();
-            // dd($get);
             // $getinfo = \App\Models\Visitor::latest()->get();
-            // dd($getinfo, $request->name, $request->host, $request->purpose);
 
             if ($request->host == null) {
                 $host = 'NA';
@@ -239,9 +216,7 @@ class HomeController extends Controller
     public function UvisitorSubmit(Request $request)
     {
         try {
-            // $getdata = Visitor::where('phone', $request->phone)->get();
             $getdata = Visitor::latest()->first();
-            // dd($getdata);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -254,19 +229,16 @@ class HomeController extends Controller
     {
         try {
             $getdata = \App\Models\Guest::latest()->first();
-            // dd($checkdata);
 
             if (isset($getdata) && $getdata) {
                 $incid = $getdata->id + 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = "Globalsync ID-" . $num_padded;
-                // dd($visitorID);
 
             } else {
                 $incid = 1;
                 $num_padded = sprintf("%03d", $incid);
                 $visitorID = "Globalsync ID-" . $num_padded;
-                // dd($visitorID);
             }
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -278,7 +250,6 @@ class HomeController extends Controller
 
     public function VisitorSave(Request $request, AppMailer $mailer)
     {
-        // dd($request->all());
         try {
             // $picture = "";
             // $imageNameArr = [];
@@ -340,10 +311,7 @@ class HomeController extends Controller
             $result = $complRegis->save();
 
             if ($result) {
-                // return redirect()->back()->with("success", "Product Complaint Registered...!");
-                // return redirect()->back()->with("success", "Registered...!");
                 return redirect()->route('submit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
-                // return redirect('globalsyncvisitor/submit')->with("success", "Thanks, you now you are check in $complRegis->created_at ");
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong...!");
@@ -355,9 +323,7 @@ class HomeController extends Controller
     public function submitForm(Request $request)
     {
         try {
-            // $getdata = Guest::where('phone', $request->phone)->get();
             $getdata = Guest::latest()->first();
-            // dd($getdata);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -366,9 +332,7 @@ class HomeController extends Controller
 
     public function popUpVisitorRegistration(Request $request)
     {
-        // dd($request->all());
         $guests = Guest::where('visitorID', $request->visitorID)->first();
-        // dd($guests);
         return Response::json($guests);
     }
 
@@ -378,7 +342,9 @@ class HomeController extends Controller
     {
 
         $month_array = array();
-        $Visitor_vates = Guest::orderBy('created_at', 'ASC')->pluck('created_at');
+        // $Visitor_vates = Visitor::where('companyCode', Auth::user()->company_name)->orderBy('created_at', 'ASC')->pluck('created_at');
+        $Visitor_vates = Visitor::orderBy('created_at', 'ASC')->pluck('created_at');
+        // dd($Visitor_vates);
         $Visitor_vates = json_decode($Visitor_vates);
 
         if (!empty($Visitor_vates)) {
@@ -394,7 +360,8 @@ class HomeController extends Controller
 
     public function getMonthlyPostCount($month)
     {
-        $monthly_visitor_count = Guest::whereMonth('created_at', $month)->get()->count();
+        // $monthly_visitor_count = Visitor::where('companyCode', Auth::user()->company_name)->whereMonth('created_at', $month)->get()->count();
+        $monthly_visitor_count = Visitor::whereMonth('created_at', $month)->get()->count();
         return $monthly_visitor_count;
     }
 

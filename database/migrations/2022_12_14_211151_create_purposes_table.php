@@ -17,6 +17,7 @@ class CreatePurposesTable extends Migration
             $table->id();
             $table->text('name')->nullable();
             $table->string('companyName')->nullable();
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }

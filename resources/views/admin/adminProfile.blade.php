@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="py-2 text-dark">{{ Auth::user()->name }}</h4>
+                                        <h4 class="py-2 text-dark">{{ Auth::user()->admin_name }}</h4>
                                         <p>{{ Auth::user()->email }}</p>
                                     </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <p class="text-dark font-weight-medium pt-24px mb-2">Email address</p>
                                 <p>{{ Auth::user()->email }}</p>
                                 <p class="text-dark font-weight-medium pt-24px mb-2">Phone Number</p>
-                                <p>{{ Auth::user()->phone }}</p>
+                                <p>{{ Auth::user()->company_phone }}</p>
                             </div>
 
                         </div>

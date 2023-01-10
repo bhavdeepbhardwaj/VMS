@@ -44,7 +44,6 @@ class UserController extends Controller
     {
         try {
             //code...
-            // $user = User::get()->first();
             $users = User::where('id', Auth::user()->id)->get()->first();
             // dd($user);
         } catch (ModelNotFoundException $exception) {
@@ -58,8 +57,6 @@ class UserController extends Controller
     public function profilesave(Request $request)
     {
         try {
-            // dd($request->all());
-
             $picture = "";
             $imageNameArr = [];
 
@@ -97,6 +94,7 @@ class UserController extends Controller
                 'state'             => $request->state,
                 'company_logo'      => $picture,
                 'approve'           => $request->approve,
+                'admin_name'           => $request->admin_name,
             ]);
 
             return redirect()->back()->with("usersuccess", "Company Profile Updated Successfully!");
@@ -143,11 +141,8 @@ class UserController extends Controller
     public function VisitiorRegistration()
     {
         try {
-            // $getdata = Guest::where('visitorID', $request->visitorID)->get()->first();
-            // dd($getdata);
-            $guest = Visitor::where('companyCode', Auth::user()->company_name)->orderBy('created_at', 'DESC')->get();
+            $guest = Visitor::where('is_deleted', '0')->where('companyCode', Auth::user()->company_name)->orderBy('created_at', 'DESC')->get();
             // dd($guest);
-
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -158,10 +153,7 @@ class UserController extends Controller
 
     public function popUpVisitiorRegistration(Request $request)
     {
-        // dd($request->all());
         $guests = Visitor::where('visitorID', $request->visitorID)->first();
-
-        // dd($guests);
         return Response::json($guests);
     }
 
@@ -172,7 +164,7 @@ class UserController extends Controller
         // dd($request->all());
         try {
             $t = time();
-            return Excel::download(new VisitorExport, '(' . date("d-m-Y", $t) . ')Visitor-Registration.xlsx');
+            return Excel::download(new VisitorExport, '(' . date("d-m-Y", $t) . ')-Visitor-Registration.xlsx');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -183,7 +175,6 @@ class UserController extends Controller
 
     public function datefilterVisitor(Request $request)
     {
-        // dd($request->all());
         try {
             $this->validate($request, [
                 'start_date'                  => 'required',
@@ -201,7 +192,6 @@ class UserController extends Controller
 
     public function QRCode()
     {
-        // dd($request->all());
         try {
             $guest = Visitor::orderBy('created_at', 'DESC')->get();
 

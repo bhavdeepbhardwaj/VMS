@@ -15,8 +15,8 @@
                     <div class="card card-mini dash-card card-1">
                         <div class="card-body">
                             <h2 class="mb-1">{{ $users }}</h2>
-                            <p>Total Customers</p>
-                            <span class="mdi mdi-account-group"></span>
+                            <p>Total Client</p>
+                            <a href="{{ route('user')}}" ><span class="mdi mdi-account-group"></span></a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <h2 class="mb-1">{{ $visitor }}</h2>
                             <p>Total visitor Registration</p>
-                            <span class=" mdi mdi-account-card-details"></span>
+                            <a href="{{ route('admin.visitor')}}"><span class=" mdi mdi-account-card-details"></span></a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,11 @@
                         ->whereYear('created_at', date('Y'))
                         ->groupBy('month_name')
                         ->orderBy('count')
+                        ->where('is_deleted', '0')
+                        ->where('role', '2')
                         ->get();
+                        // var_dump($user);
+                        // die();
 
                     foreach ($user as $d) {
                         echo "['" . $d->month_name . "', " . $d->count . '],';

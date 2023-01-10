@@ -52,7 +52,7 @@
                                     alt="User Image">
                             @endif
                             <div class="d-inline-block">
-                                {{ Auth::user()->name }} <small
+                                {{ Auth::user()->admin_name }} <small
                                     class="pt-1">{{ Auth::user()->email }}</small>
                             </div>
                         </li>

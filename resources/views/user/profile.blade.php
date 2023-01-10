@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="avatar-edit">
                                     <input type='file' hidden id="imageUpload"
-                                        class="ec-image-upload @error('company_logo') is-invalid @enderror" name="company_logo[]">
+                                        class="ec-image-upload @error('company_logo') is-invalid @enderror" name="company_logo[]" value="{{ Auth::user()->company_logo }}">
                                     @error('company_logo')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

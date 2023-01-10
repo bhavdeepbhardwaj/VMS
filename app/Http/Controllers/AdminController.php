@@ -34,9 +34,10 @@ class AdminController extends Controller
     public function adminHome()
     {
         try {
-            $users = DB::table('users')->count();
-            $visitor = DB::table('visitors')->count();
-            $guest = Guest::orderBy('created_at', 'DESC')->get();
+            $users = DB::table('users')->where('is_deleted', '0')->count();
+            $visitor = DB::table('visitors')->where('is_deleted', '0')->count();
+            $guest = Guest::where('is_deleted', '0')->orderBy('created_at', 'DESC')->get();
+            // dd($guest);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -48,9 +49,7 @@ class AdminController extends Controller
     public function visitorRegistration()
     {
         try {
-            // $getdata = Guest::where('visitorID', $request->visitorID)->get()->first();
-            // dd($getdata);
-            $guest = Visitor::orderBy('created_at', 'DESC')->get();
+            $guest = Visitor::where('is_deleted', '0')->orderBy('created_at', 'DESC')->get();
             // dd($guest);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -63,9 +62,7 @@ class AdminController extends Controller
     public function visitordemoRegistration()
     {
         try {
-            // $getdata = Guest::where('visitorID', $request->visitorID)->get()->first();
-            // dd($getdata);
-            $guest = Guest::orderBy('created_at', 'DESC')->get();
+            $guest = Guest::where('is_deleted', '0')->orderBy('created_at', 'DESC')->get();
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -74,7 +71,6 @@ class AdminController extends Controller
 
     public function popUpVisitorRegistration(Request $request)
     {
-        // dd($request->all());
         $guests = Visitor::where('visitorID', $request->visitorID)->first();
         // dd($guests);
         return Response::json($guests);
@@ -84,7 +80,6 @@ class AdminController extends Controller
 
     public function exportAllvisitorRegistration(Request $request)
     {
-        // dd($request->all());
         try {
             $t = time();
             return Excel::download(new ExportVisitor, '(' . date("d-m-Y",$t) . ') Visitor-Registration.xlsx');
@@ -98,7 +93,6 @@ class AdminController extends Controller
 
     public function datefiltervisitor(Request $request)
     {
-        // dd($request->all());
         try {
             $this->validate($request, [
                 'start_date'                  => 'required',
@@ -117,7 +111,8 @@ class AdminController extends Controller
     public function user()
     {
         try {
-            $user = User::all();
+            $user = User::where('is_deleted', '0')->where('role','2')->orderBy('created_at', 'DESC')->get();
+            // dd($user);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -154,7 +149,6 @@ class AdminController extends Controller
     public function adminProfilesave(Request $request)
     {
         try {
-            // dd($request->all());
             $picture = "";
             $imageNameArr = [];
 

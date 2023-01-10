@@ -1,9 +1,9 @@
 // Warranty Extend Data
 
-(function ($) {
+(function($) {
 
     var charts = {
-        init: function () {
+        init: function() {
             // -- Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -12,14 +12,14 @@
 
         },
 
-        ajaxGetPostMonthlyData: function () {
+        ajaxGetPostMonthlyData: function() {
             var urlPath = '/get-Warranty_extend-chart-data';
             var request = $.ajax({
                 method: 'GET',
                 url: urlPath
             });
 
-            request.done(function (response) {
+            request.done(function(response) {
                 // console.log( response );
                 charts.createCompletedJobsChart(response);
             });
@@ -28,7 +28,7 @@
         /**
          * Created the Completed Jobs Chart
          */
-        createCompletedJobsChart: function (response) {
+        createCompletedJobsChart: function(response) {
 
             var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
@@ -88,10 +88,10 @@
 
 // Warranty Registration Data
 
-(function ($) {
+(function($) {
 
     var charts = {
-        init: function () {
+        init: function() {
             // -- Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -100,14 +100,14 @@
 
         },
 
-        ajaxGetPostMonthlyData: function () {
+        ajaxGetPostMonthlyData: function() {
             var urlPath = '/get-Warranty_registration-chart-data';
             var request = $.ajax({
                 method: 'GET',
                 url: urlPath
             });
 
-            request.done(function (response) {
+            request.done(function(response) {
                 // console.log( response );
                 charts.createCompletedJobsChart(response);
             });
@@ -116,7 +116,7 @@
         /**
          * Created the Completed Jobs Chart
          */
-        createCompletedJobsChart: function (response) {
+        createCompletedJobsChart: function(response) {
 
             var ctx = document.getElementById("myAreaChart1");
             var myLineChart = new Chart(ctx, {
@@ -176,10 +176,10 @@
 
 // Complaint Registration Data
 
-(function ($) {
+(function($) {
 
     var charts = {
-        init: function () {
+        init: function() {
             // -- Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -188,14 +188,14 @@
 
         },
 
-        ajaxGetPostMonthlyData: function () {
+        ajaxGetPostMonthlyData: function() {
             var urlPath = '/get-complaint_registration-chart-data';
             var request = $.ajax({
                 method: 'GET',
                 url: urlPath
             });
 
-            request.done(function (response) {
+            request.done(function(response) {
                 // console.log( response );
                 charts.createCompletedJobsChart(response);
             });
@@ -204,7 +204,7 @@
         /**
          * Created the Completed Jobs Chart
          */
-        createCompletedJobsChart: function (response) {
+        createCompletedJobsChart: function(response) {
 
             var ctx = document.getElementById("myAreaChart2");
             var myLineChart = new Chart(ctx, {
@@ -264,10 +264,10 @@
 
 // Visitor Registration Data
 
-(function ($) {
+(function($) {
 
     var charts = {
-        init: function () {
+        init: function() {
             // -- Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -276,15 +276,15 @@
 
         },
 
-        ajaxGetPostMonthlyData: function () {
+        ajaxGetPostMonthlyData: function() {
             var urlPath = '/get-visitor-chart-data';
             var request = $.ajax({
                 method: 'GET',
                 url: urlPath
             });
 
-            request.done(function (response) {
-                // console.log( response );
+            request.done(function(response) {
+                // console.log(response);
                 charts.createCompletedJobsChart(response);
             });
         },
@@ -292,7 +292,7 @@
         /**
          * Created the Completed Jobs Chart
          */
-        createCompletedJobsChart: function (response) {
+        createCompletedJobsChart: function(response) {
 
             var ctx = document.getElementById("myAreaChartVisitor");
             var myLineChart = new Chart(ctx, {

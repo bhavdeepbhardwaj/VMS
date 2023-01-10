@@ -25,6 +25,7 @@ class CreateVisitorsTable extends Migration
             $table->string('pic')->nullable();
             $table->string('companyLogo')->nullable();
             $table->text('address')->nullable();
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }

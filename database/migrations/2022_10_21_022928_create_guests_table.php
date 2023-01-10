@@ -23,6 +23,7 @@ class CreateGuestsTable extends Migration
             $table->string('purpose')->nullable();
             $table->string('pic')->nullable();
             $table->text('address')->nullable();
+            $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }

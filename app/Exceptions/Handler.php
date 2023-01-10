@@ -62,14 +62,13 @@ class Handler extends ExceptionHandler
                 ];
 
                 // dd($data);
-                if (str_contains($data['message_error'], 'file_put_contents') == false) {
+                // if (str_contains($data['message_error'], 'file_put_contents') == false) {
 
-                    Mail::send('emails.exceptionerror', $data, function ($message) use ($to_name, $to_email) {
-                        $message->to($to_email)
-                            ->subject('Immediate Action Required');
-                    });
-
-                }
+                //     Mail::send('emails.exceptionerror', $data, function ($message) use ($to_name, $to_email) {
+                //         $message->to($to_email)
+                //             ->subject('Immediate Action Required');
+                //     });
+                // }
 
             } catch (\Exception$e) {
 
